@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="DeveloperCity.ContactBack.DomainModel.Report" table="`Report`">
+    <id column="`ReportID`" name="ReportID" type="long" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <timestamp access="field" column="`ModifiedOn`" name="ModifiedOn"/>
+    <property access="field" column="`CreatedOn`" name="CreatedOn" not-null="true" type="java.util.Date"/>
+    <property column="`ReportFile`" length="45" name="ReportFile" not-null="true" type="java.lang.String"/>
+    <property column="`ReportDescription`" length="65" name="ReportDescription" not-null="true" type="java.lang.String"/>
+  </class>
+</hibernate-mapping>

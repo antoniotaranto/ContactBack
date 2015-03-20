@@ -1,0 +1,183 @@
+@import "main-ie.css";
+
+body.home div.outer div.limit div.inside div.content ul.welcome li strong{
+	height: 30px;
+	padding-top:7px;
+	margin:6px 5px 7px 5px;
+}
+
+/* START  cockpit */
+
+div.outer div.limit div.inside div.content ul.cockpit {
+	display:block;
+	width: auto;
+}
+
+div.outer div.limit div.inside div.content ul.cockpit li {
+	display: block;
+	width:320px;
+	float:left;
+	margin-right:60px;
+	margin-bottom:25px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body.home div.outer div.limit div.inside div.content ul.welcome li p{
+	width:172px;
+	padding: 8px 15px 30px 15px;
+}
+
+
+
+
+
+
+
+
+
+
+/* START HEADER */
+
+div.outer div.limit div.header div.outras-aplicacoes {
+	background: #6c2972 url(/CAC/resources/IMAGES/bg-menu-aplicacoes.gif) left 31px repeat-x;
+}
+
+div.outer div.limit div.header div.outras-aplicacoes ul {
+	position:relative;
+}
+
+div.outer div.limit div.header div.outras-aplicacoes ul li.active {
+	position:relative;
+	top: 3px;
+	height:23px;
+	padding: 5px 10px 0 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+div.outer div.limit div.header div.logos {
+	margin-left:7px;
+	margin-bottom:10px;
+	width: 500px;
+}
+
+div.outer div.limit div.header div.logos p{
+	width: 180px;
+}
+
+
+div.outer div.limit div.header p.bem-vindo {
+	height: 16px;
+}
+/* END HEADER*/
+
+
+div.outer div.limit div.two-column-left div.sidebar.first, 
+div.outer div.limit div.three-column div.sidebar.first {
+    width: 231px;
+	overflow-x: hidden;
+	margin: 12px 0 0 9px;
+}
+
+div.outer div.limit div.inside div.sidebar.last{
+	margin-right:8px;
+}
+
+
+/* START CONTENT */
+div.outer div.limit div.inside div.content {
+	margin: 0 7px 0 7px;
+	overflow: hidden;
+}
+
+
+div.outer div.limit div.two-column-left div.content {
+	margin: 0 15px 0 258px;
+}
+
+
+div.outer div.limit div.two-column-right div.content {
+	margin: 0 273px 0 7px;
+}
+
+div.outer div.limit div.three-column div.content {
+	margin: 0 273px 0 258px;
+}
+
+div.outer div.limit div.inside fieldset {
+	overflow-x:auto;
+	float: left;
+}
+
+
+
+
+div.outer div.limit div.inside fieldset.buttons li a{
+	width: auto;
+	display: inline-block;
+}
+
+div.outer div.limit div.inside fieldset.buttons li input {
+	width: auto;
+	display: inline-block;
+}
+
+
+
+div.outer div.limit div.inside ul.action-links a{
+	width: auto;
+	display: inline-block;
+}
+
+div.outer div.limit div.inside ul.action-links input {
+	width: auto;
+	display: inline-block;
+}
+
+
+
+span.button {
+	display: inline-block;
+}
+
+span.button a {
+	width: auto;
+	display: inline-block;
+}
+
+
+
+
+

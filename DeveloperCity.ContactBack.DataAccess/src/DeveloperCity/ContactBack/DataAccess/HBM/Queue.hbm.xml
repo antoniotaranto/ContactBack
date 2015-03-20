@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="DeveloperCity.ContactBack.DomainModel.Queue" table="`Queue`">
+    <id column="`QueueID`" name="QueueID" type="long" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <timestamp access="field" column="`ModifiedOn`" name="ModifiedOn"/>
+    <property column="`IsValidBinaNumber`" name="ValidBinaNumber" not-null="true" type="boolean"/>    
+    <property column="`BinaNumber`" length="255" name="BinaNumber" not-null="true" type="java.lang.String"/>
+    <property column="`CallBackNumber`" length="11" name="CallBackNumber" not-null="true" type="java.lang.String"/>
+    <property column="`CallBackNumberType`" name="CallBackNumberType" not-null="true" type="DeveloperCity.ContactBack.DataAccess.UserTypes.CallBackNumberType"/>
+    <property column="`CallTime`" name="CallTime" not-null="true" type="java.util.Date"/>
+    <property column="`DontCallBefore`" name="DontCallBefore" not-null="false" type="java.util.Date"/>
+    <property column="`ScheduleTime`" name="ScheduleTime" not-null="true" type="java.util.Date"/>
+    <property column="`EstimatedTimeToAttend`" name="EstimatedTimeToAttend" not-null="false" type="java.util.Date"/>
+    <property column="`EntryPosition`" name="EntryPosition" not-null="true" type="int"/>
+    <many-to-one access="property" class="DeveloperCity.ContactBack.DomainModel.Call" column="`AttendCallID`" name="AttendCall"/>
+    <property column="`CurrentStatus`" name="QueueStatus" type="DeveloperCity.ContactBack.DataAccess.UserTypes.QueueStatus"/>
+    <property column="`PriorityValue`" name="PriorityValue" type="short"/>
+    <property column="`CallManagerCallID`" name="CallManagerCallID" not-null="true" type="long"/>
+    <property column="`AttendCount`" name="AttendCount" not-null="true" type="int"/>
+    <bag access="property" inverse="true" lazy="true" name="Calls" table="`Call`">
+      <key column="`QueueID`"/>
+      <one-to-many class="DeveloperCity.ContactBack.DomainModel.Call"/>
+    </bag>
+    <bag access="property" inverse="true" lazy="true" name="History" table="`QueueHistory`">
+      <key column="`QueueID`"/>
+      <one-to-many class="DeveloperCity.ContactBack.DomainModel.QueueHistory"/>
+    </bag>
+    <property access="field" column="`CreatedOn`" name="CreatedOn" not-null="true" type="java.util.Date"/>
+  </class>
+</hibernate-mapping>

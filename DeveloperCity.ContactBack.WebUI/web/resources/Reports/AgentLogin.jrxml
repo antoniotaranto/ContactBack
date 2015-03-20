@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AgentLogin" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" whenResourceMissingType="Empty">
+	<property name="ireport.zoom" value="1.652892561983483"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="StartDate" class="java.util.Date"/>
+	<parameter name="EndDate" class="java.util.Date"/>
+	<parameter name="StartDateValue" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.text.SimpleDateFormat("yyyy-MM-dd").format($P{StartDate})]]></defaultValueExpression>
+	</parameter>
+	<parameter name="EndDateValue" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.text.SimpleDateFormat("yyyy-MM-dd").format($P{EndDate})]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+	`User`.UserID,
+	Name,
+	DirectoryNumber,
+	Terminal,
+	LastCallTime,
+	WorkTime.WorkTimeID,
+	LoginTime,
+	LogoutTime,
+	BreakStart,
+	BreakEnd,
+	Description
+FROM
+	Agent
+		INNER JOIN `User` ON
+			`User`.UserID = Agent.UserID
+		LEFT JOIN WorkTime ON
+			`User`.UserID = WorkTime.UserID
+		LEFT JOIN Break ON
+			WorkTime.WorkTimeID = Break.WorkTimeID
+		LEFT JOIN BreakType ON
+			Break.BreakTypeID = BreakType.BreakTypeID
+WHERE
+	LoginTime BETWEEN '$P!{StartDateValue} 00:00:00' AND '$P!{EndDateValue} 23:59:59'
+ORDER BY
+	`User`.Name,
+	WorkTime.LoginTime,
+	Break.BreakStart]]>
+	</queryString>
+	<field name="UserID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DirectoryNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Terminal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LastCallTime" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="WorkTimeID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LoginTime" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LogoutTime" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BreakStart" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BreakEnd" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Description" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="BreakDuration" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double((($F{BreakEnd} == null ? new java.util.Date() : $F{BreakEnd}).getTime() - $F{BreakStart}.getTime()) * 0.001)]]></variableExpression>
+	</variable>
+	<variable name="WorkTimeDuration" class="java.lang.Double" resetType="Group" resetGroup="WorkTime">
+		<variableExpression><![CDATA[new Double((   ($F{LogoutTime} == null ? new java.util.Date() : $F{LogoutTime}).getTime() - $F{LoginTime}.getTime()) * 0.001)]]></variableExpression>
+	</variable>
+	<variable name="BreakDuration_WorkTimeSum" class="java.lang.Double" resetType="Group" resetGroup="WorkTime" calculation="Sum">
+		<variableExpression><![CDATA[$V{BreakDuration}]]></variableExpression>
+	</variable>
+	<group name="User" isStartNewPage="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{UserID}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Opaque" x="0" y="0" width="555" height="20" forecolor="#FFFFFF" backcolor="#4783B6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Name}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="17"/>
+		</groupFooter>
+	</group>
+	<group name="WorkTime">
+		<groupExpression><![CDATA[$F{WorkTimeID}]]></groupExpression>
+		<groupHeader>
+			<band height="39">
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="14" width="94" height="14"/>
+					<textElement verticalAlignment="Top">
+						<font fontName="Tahoma" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{LoginTime})]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="29" width="47" height="10"/>
+					<box>
+						<topPen lineWidth="0.25" lineStyle="Solid"/>
+						<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Pausa de]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="47" y="29" width="47" height="10"/>
+					<box>
+						<topPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Pausa até]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="94" y="29" width="54" height="10"/>
+					<box>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Tempo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="171" y="29" width="384" height="10"/>
+					<box>
+						<topPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement>
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Motivo]]></text>
+				</staticText>
+				<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+					<reportElement x="94" y="14" width="54" height="14"/>
+					<textElement verticalAlignment="Top">
+						<font fontName="Tahoma" isItalic="true"/>
+					</textElement>
+					<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{LoginTime}]]></textFieldExpression>
+				</textField>
+				<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+					<reportElement x="171" y="14" width="224" height="14"/>
+					<textElement verticalAlignment="Top">
+						<font fontName="Tahoma" isItalic="true"/>
+					</textElement>
+					<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{LogoutTime}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="4" width="94" height="10"/>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Data]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="94" y="4" width="54" height="10"/>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Login]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="171" y="4" width="224" height="10"/>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Logout]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="148" y="29" width="23" height="10"/>
+					<box>
+						<topPen lineWidth="0.25"/>
+					</box>
+					<textElement/>
+					<text><![CDATA[ ]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="37">
+				<staticText>
+					<reportElement x="0" y="1" width="94" height="10"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Tempo logado]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="11" width="94" height="10"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Tempo em pausa]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="21" width="94" height="10"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total de pausas]]></text>
+				</staticText>
+				<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+					<reportElement x="94" y="11" width="54" height="10"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[(new java.text.DecimalFormat("00").format( Math.floor($V{BreakDuration_WorkTimeSum}.doubleValue() / 3600D))) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor(($V{BreakDuration_WorkTimeSum}.doubleValue() / 60D) - (Math.floor($V{BreakDuration_WorkTimeSum}.doubleValue() / 3600D) * 60)))) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{BreakDuration_WorkTimeSum}.doubleValue() % 60.0D) ))]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="94" y="21" width="54" height="10"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{WorkTime_COUNT}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="94" y="1" width="54" height="10"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[(new java.text.DecimalFormat("00").format( Math.floor($V{WorkTimeDuration}.doubleValue() / 3600D))) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor(($V{WorkTimeDuration}.doubleValue() / 60D) - (Math.floor($V{WorkTimeDuration}.doubleValue() / 3600D) * 60)))) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{WorkTimeDuration}.doubleValue() % 60.0D) ))]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="76" splitType="Stretch">
+			<staticText>
+				<reportElement x="171" y="0" width="224" height="76"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="20" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Login de Agentes]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yy HH:mm:ss" isBlankWhenNull="true">
+				<reportElement x="418" y="0" width="137" height="76"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="0" width="148" height="76"/>
+				<imageExpression class="java.lang.String"><![CDATA["../IMAGES/Danone.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="13"/>
+				<textElement>
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Filtro:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="13" width="555" height="11"/>
+				<textElement>
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Entre " + new java.text.SimpleDateFormat("dd/MM/yy").format($P{StartDate})
+ + " e "
++ new java.text.SimpleDateFormat("dd/MM/yy").format($P{EndDate})]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="10" splitType="Stretch">
+			<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="47" height="10"/>
+				<box>
+					<topPen lineWidth="0.75" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{BreakStart}]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement x="47" y="0" width="47" height="10"/>
+				<box>
+					<topPen lineWidth="0.75" lineColor="#FFFFFF"/>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{BreakEnd}]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement x="94" y="0" width="54" height="10"/>
+				<box>
+					<topPen lineWidth="0.75" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(new java.text.DecimalFormat("00").format( Math.floor($V{BreakDuration}.doubleValue() / 3600D))) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor(($V{BreakDuration}.doubleValue() / 60D) - (Math.floor($V{BreakDuration}.doubleValue() / 3600D) * 60)))) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{BreakDuration}.doubleValue() % 60.0D) ))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="171" y="0" width="384" height="10"/>
+				<box>
+					<topPen lineWidth="0.75" lineColor="#FFFFFF"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Description}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="148" y="0" width="23" height="10"/>
+				<box>
+					<topPen lineWidth="0.75" lineColor="#FFFFFF"/>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[ ]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="13" splitType="Stretch">
+			<textField evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement x="509" y="0" width="46" height="13"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="395" y="0" width="114" height="13"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="6" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="DeveloperCity.ContactBack.DomainModel.Break" table="`Break`">
+    <id column="`BreakID`" name="BreakID" type="long" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <timestamp access="field" column="`ModifiedOn`" name="ModifiedOn"/>
+    <many-to-one access="property" class="DeveloperCity.ContactBack.DomainModel.WorkTime" column="`WorkTimeID`" name="WorkTime"/>
+    <many-to-one access="property" class="DeveloperCity.ContactBack.DomainModel.BreakType" column="`BreakTypeID`" fetch="join" lazy="false" name="BreakType"/>
+    <property column="`BreakStart`" name="BreakStart" not-null="true" type="java.util.Date"/>
+    <property column="`BreakEnd`" name="BreakEnd" not-null="false" type="java.util.Date"/>
+    <property access="field" column="`CreatedOn`" name="CreatedOn" not-null="true" type="java.util.Date"/>
+    <property column="`IsSystemBreak`" name="SystemBreak" not-null="true" type="boolean"/>
+  </class>
+</hibernate-mapping>

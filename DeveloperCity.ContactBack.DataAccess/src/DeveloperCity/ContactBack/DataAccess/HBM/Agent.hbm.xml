@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <joined-subclass extends="DeveloperCity.ContactBack.DomainModel.User" lazy="false" name="DeveloperCity.ContactBack.DomainModel.Agent" table="`Agent`">
+    <key column="`UserID`"/>
+    <property column="`DirectoryNumber`" length="6" name="DirectoryNumber" not-null="true" type="java.lang.String"/>
+    <property column="`Terminal`" length="20" name="Terminal" not-null="true" type="java.lang.String"/>
+    <property column="`LastCallTime`" name="LastCallTime" type="java.util.Date"/>
+    <property column="`CurrentStatus`" name="AgentStatus" type="DeveloperCity.ContactBack.DataAccess.UserTypes.AgentStatus"/>
+    <bag access="property" inverse="true" lazy="true" name="WorkTimes" table="`WorkTime`">
+      <key column="`UserID`"/>
+      <one-to-many class="DeveloperCity.ContactBack.DomainModel.WorkTime"/>
+    </bag>
+  </joined-subclass>
+</hibernate-mapping>

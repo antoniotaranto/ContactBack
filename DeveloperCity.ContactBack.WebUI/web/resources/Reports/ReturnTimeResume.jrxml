@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReturnTimeResume" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" whenResourceMissingType="Empty" uuid="cb2354e5-5a1f-4e88-b319-62a38bf799b9">
+	<property name="ireport.zoom" value="1.652892561983483"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="StartDate" class="java.util.Date"/>
+	<parameter name="EndDate" class="java.util.Date"/>
+	<parameter name="StartDateValue" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.text.SimpleDateFormat("yyyy-MM-dd").format($P{StartDate})]]></defaultValueExpression>
+	</parameter>
+	<parameter name="EndDateValue" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.text.SimpleDateFormat("yyyy-MM-dd").format($P{EndDate})]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+	Queue.CallBackNumber,
+	Queue.CallTime,
+	(SELECT COUNT(1) FROM QueueHistory WHERE QueueHistory.QueueID = Queue.QueueID) AS ContactTries,
+	CASE Queue.CurrentStatus
+		WHEN 1 THEN "URA"
+		WHEN 2 THEN "Processando fila"
+		WHEN 3 THEN "Na fila"
+		WHEN 4 THEN "Entrando em retorno"
+		WHEN 5 THEN "Em ligação"
+		WHEN 6 THEN "Removido manualmente"
+		WHEN 7 THEN "Tentativas excedidas"
+		WHEN 8 THEN "Retorno atendido"
+		ELSE "Desconhecido"
+		END AS CurrentQueueStatus,
+	Queue.AttendCount ReturnTries,
+	FirstTry.StartTime AS FirstReturn,
+	LastTry.StartTime AS LastReturn,
+	User.Name AS ReturnedBy,
+	Call.AnswerTime AnswerCall,
+	Call.EndTime EndCall
+FROM
+	`Queue`
+		LEFT JOIN `Call` FirstTry ON
+			FirstTry.CallID = (SELECT MIN(CallID) FROM `Call` WHERE Call.QueueID = Queue.QueueID)
+		LEFT JOIN `Call` AS LastTry ON
+			LastTry.CallID = (SELECT MAX(CallID) FROM `Call` WHERE Call.QueueID = Queue.QueueID)
+		LEFT JOIN `Call` ON
+			(Queue.QueueID = Call.QueueID AND Call.AnswerTime IS NOT NULL)
+		LEFT JOIN `User` ON
+			Call.UserID = User.UserID
+WHERE
+	Queue.CallTime BETWEEN '$P!{StartDateValue} 00:00:00' AND '$P!{EndDateValue} 23:59:59'
+ORDER BY
+	HOUR(Call.AnswerTime)]]>
+	</queryString>
+	<field name="CallBackNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CallTime" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ContactTries" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CurrentQueueStatus" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ReturnTries" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FirstReturn" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LastReturn" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ReturnedBy" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AnswerCall" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EndCall" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="Hour" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{AnswerCall} == null ? null : new Integer($F{AnswerCall}.getHours())]]></variableExpression>
+	</variable>
+	<variable name="UntilFirstReturn" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double(($F{FirstReturn}.getTime() - $F{CallTime}.getTime()) * 0.001)]]></variableExpression>
+	</variable>
+	<variable name="UntilLastReturn" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double(($F{LastReturn}.getTime() - $F{CallTime}.getTime()) * 0.001)]]></variableExpression>
+	</variable>
+	<variable name="RingTime" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double(($F{AnswerCall}.getTime() - $F{LastReturn}.getTime()) * 0.001)]]></variableExpression>
+	</variable>
+	<variable name="CallTime" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double(($F{EndCall}.getTime() - $F{AnswerCall}.getTime()) * 0.001)]]></variableExpression>
+	</variable>
+	<variable name="Success" class="java.lang.Long">
+		<variableExpression><![CDATA[$F{AnswerCall} == null ? new java.lang.Long(0) : new java.lang.Long(1)]]></variableExpression>
+	</variable>
+	<variable name="QueueCount" class="java.lang.Long" resetType="Group" resetGroup="Call Date Group" calculation="Count">
+		<variableExpression><![CDATA[$F{CallBackNumber}]]></variableExpression>
+	</variable>
+	<variable name="UntilFirstReturn_GroupAvg" class="java.lang.Double" resetType="Group" resetGroup="Call Date Group" calculation="Average">
+		<variableExpression><![CDATA[$V{UntilFirstReturn}]]></variableExpression>
+	</variable>
+	<variable name="UntilFirstReturn_GroupMax" class="java.lang.Double" resetType="Group" resetGroup="Call Date Group" calculation="Highest">
+		<variableExpression><![CDATA[$V{UntilFirstReturn}]]></variableExpression>
+	</variable>
+	<variable name="UntilLastReturn_GroupAvg" class="java.lang.Double" resetType="Group" resetGroup="Call Date Group" calculation="Average">
+		<variableExpression><![CDATA[$V{UntilLastReturn}]]></variableExpression>
+	</variable>
+	<variable name="ContactTries_GroupSum" class="java.lang.Long" resetType="Group" resetGroup="Call Date Group" calculation="Sum">
+		<variableExpression><![CDATA[$F{ContactTries}]]></variableExpression>
+	</variable>
+	<variable name="ReturnTries_GroupSum" class="java.lang.Long" resetType="Group" resetGroup="Call Date Group" calculation="Sum">
+		<variableExpression><![CDATA[$F{ReturnTries}]]></variableExpression>
+	</variable>
+	<variable name="Success_GroupSum" class="java.lang.Long" resetType="Group" resetGroup="Call Date Group" calculation="Sum">
+		<variableExpression><![CDATA[$V{Success}]]></variableExpression>
+	</variable>
+	<variable name="RingTime_GroupAvg" class="java.lang.Double" resetType="Group" resetGroup="Call Date Group" calculation="Average">
+		<variableExpression><![CDATA[$V{RingTime}]]></variableExpression>
+	</variable>
+	<variable name="CallTime_GroupAvg" class="java.lang.Double" resetType="Group" resetGroup="Call Date Group" calculation="Average">
+		<variableExpression><![CDATA[$V{CallTime}]]></variableExpression>
+	</variable>
+	<variable name="CallTime_GroupMax" class="java.lang.Double" resetType="Group" resetGroup="Call Date Group" calculation="Highest">
+		<variableExpression><![CDATA[$V{CallTime}]]></variableExpression>
+	</variable>
+	<variable name="QueueCount_TotalSum" class="java.lang.Long" calculation="Count">
+		<variableExpression><![CDATA[$F{CallBackNumber}]]></variableExpression>
+	</variable>
+	<variable name="UntilFirstReturn_TotalAvg" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$V{UntilFirstReturn}]]></variableExpression>
+	</variable>
+	<variable name="UntilFirstReturn_TotalMax" class="java.lang.Double" calculation="Highest">
+		<variableExpression><![CDATA[$V{UntilFirstReturn}]]></variableExpression>
+	</variable>
+	<variable name="UntilLastReturn_TotalAvg" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$V{UntilLastReturn}]]></variableExpression>
+	</variable>
+	<variable name="ContactTries_TotalSum" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{ContactTries}]]></variableExpression>
+	</variable>
+	<variable name="ReturnTries_TotalSum" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{ReturnTries}]]></variableExpression>
+	</variable>
+	<variable name="Success_TotalSum" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$V{Success}]]></variableExpression>
+	</variable>
+	<variable name="RingTime_TotalAvg" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$V{RingTime}]]></variableExpression>
+	</variable>
+	<variable name="CallTime_TotalAvg" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$V{CallTime}]]></variableExpression>
+	</variable>
+	<variable name="CallTime_TotalMax" class="java.lang.Double" calculation="Highest">
+		<variableExpression><![CDATA[$V{CallTime}]]></variableExpression>
+	</variable>
+	<group name="Call Date Group">
+		<groupExpression><![CDATA[$V{Hour}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band height="13">
+				<textField pattern="###0.00" isBlankWhenNull="true">
+					<reportElement uuid="7d077549-34d9-4a7e-b827-2e03099693c1" x="214" y="0" width="46" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[(new java.text.DecimalFormat("0").format( Math.floor( $V{UntilFirstReturn_GroupAvg}.doubleValue() / 60.0D) )) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{UntilFirstReturn_GroupAvg}.doubleValue() % 60.0D) ))]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0" isBlankWhenNull="true">
+					<reportElement uuid="ddfcf086-952f-49e2-bd4f-4e2e7c8831dc" x="62" y="0" width="43" height="13"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{ContactTries_GroupSum}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="b14f6da4-e783-4cef-b7a1-99389eb13f14" x="172" y="0" width="42" height="13"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{ReturnTries_GroupSum}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0" isBlankWhenNull="true">
+					<reportElement uuid="65fcae4d-c7b2-46f4-aadb-607124646f3f" x="0" y="0" width="62" height="13"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Hour} == null ?
+"Sem retorno" :
+$V{Hour}.toString() + ":00 - " + ( $V{Hour}.intValue() == 23 ? new Integer(0) : new Integer($V{Hour}.intValue() + 1) ).toString() + ":00"]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="627c3fa0-ee30-4c67-8e0e-2eed508879d2" x="105" y="0" width="41" height="13"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{QueueCount}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0 %" isBlankWhenNull="true">
+					<reportElement uuid="20e723ec-2f25-4d38-a822-761e816bac87" x="146" y="0" width="26" height="13"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new Double(  ((double)$V{QueueCount}.longValue()) / ((double)$V{ContactTries_GroupSum}.longValue())  )]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00" isBlankWhenNull="true">
+					<reportElement uuid="3e75f8ac-8f68-4215-8c9f-f8e28a7455d3" x="306" y="0" width="44" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[(new java.text.DecimalFormat("0").format( Math.floor($V{UntilLastReturn_GroupAvg}.doubleValue() / 60.0D) )) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{UntilLastReturn_GroupAvg}.doubleValue() % 60.0D) ))]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0" isBlankWhenNull="true">
+					<reportElement uuid="9e8e9d98-4285-4fa6-b227-94aa1132a5b8" x="350" y="0" width="43" height="13"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Success_GroupSum}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00" isBlankWhenNull="true">
+					<reportElement uuid="cadf2346-8233-4356-9c30-e15afe7430c1" x="260" y="0" width="46" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[(new java.text.DecimalFormat("0").format( Math.floor($V{UntilFirstReturn_GroupMax}.doubleValue() / 60.0D) )) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{UntilFirstReturn_GroupMax}.doubleValue() % 60.0D) ))]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00" isBlankWhenNull="true">
+					<reportElement uuid="00f31e72-0d7b-41c0-af7a-b96767b81a2d" x="419" y="0" width="45" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{RingTime_GroupAvg}.doubleValue() > 0.0D ?
+(new java.text.DecimalFormat("0").format( Math.floor($V{RingTime_GroupAvg}.doubleValue() / 60.0D) )) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{RingTime_GroupAvg}.doubleValue() % 60.0D) ))
+: "0:00"]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00" isBlankWhenNull="true">
+					<reportElement uuid="691f3189-f06b-4691-a940-da6be65de90d" x="464" y="0" width="45" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[(new java.text.DecimalFormat("0").format( Math.floor($V{CallTime_GroupAvg}.doubleValue() / 60.0D) )) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{CallTime_GroupAvg}.doubleValue() % 60.0D) ))]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00" isBlankWhenNull="true">
+					<reportElement uuid="ebc685df-f1d4-4ad1-9762-c32368b3764a" x="509" y="0" width="46" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[(new java.text.DecimalFormat("0").format( Math.floor($V{CallTime_GroupMax}.doubleValue() / 60.0D) )) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{CallTime_GroupMax}.doubleValue() % 60.0D) ))]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0 %" isBlankWhenNull="true">
+					<reportElement uuid="32245b7f-6c2b-47d0-9e18-54555b7cd0a5" x="393" y="0" width="26" height="13"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new Double( ((double)$V{Success_GroupSum}.longValue()) / ((double)$V{QueueCount}.longValue()) )]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="76" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="79dca061-918e-47fb-b078-ac6a28071d30" x="172" y="0" width="221" height="76"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="20" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Resumo por horário de retorno]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yy HH:mm:ss" isBlankWhenNull="true">
+				<reportElement uuid="4bdc4747-c88f-46ed-9d36-a1f27427c537" x="419" y="0" width="136" height="76"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement uuid="5ed2b024-6d41-432f-bcf7-dee6900671b6" x="0" y="0" width="146" height="76"/>
+				<imageExpression><![CDATA["../IMAGES/Danone.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="f25ca0a2-7a94-4e60-bff5-cdf3b62f6df3" x="0" y="0" width="555" height="13"/>
+				<textElement>
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Filtro:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="59cd255e-89bc-403b-bfd0-f3cd3b6126c2" x="0" y="13" width="555" height="11"/>
+				<textElement>
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Entre " + new java.text.SimpleDateFormat("dd/MM/yy").format($P{StartDate})
+ + " e "
++ new java.text.SimpleDateFormat("dd/MM/yy").format($P{EndDate})]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="f29a9fdf-b7e3-408e-b346-7f21e8693bda" x="0" y="0" width="62" height="26"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Horário de retorno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5b1736bc-9399-4d79-88be-ad9bba93b70c" x="62" y="0" width="110" height="13"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ligações entrantes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e067a3ec-f36c-4976-adef-7289b5e0b2f6" x="105" y="13" width="41" height="13"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Válidas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="977727c5-fa72-4aef-87cc-1b02a9ddaeaf" x="172" y="0" width="178" height="13"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Retornos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1569dd7b-9628-4eb5-a5d6-b11cea87bbe9" x="62" y="13" width="43" height="13"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e833551d-6164-4294-8b12-d53609231fc4" x="146" y="13" width="26" height="13"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8d65a727-bccd-4050-939f-5e6e0a537fa8" x="393" y="13" width="26" height="13"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ff53b22a-bfbb-4b40-90bf-a5462a684330" x="350" y="0" width="205" height="13"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Atendimentos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="de965066-7fe4-4f0d-aaf0-436b9742879f" x="509" y="13" width="46" height="13"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Maior]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="15046d9d-be15-45f8-bcf3-1bd2b0a7e992" x="464" y="13" width="45" height="13"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TMA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="853ac9df-8faf-43ff-bf7e-62cd8d15ec7a" x="419" y="13" width="45" height="13"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Toque]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3c7fa6a1-ed91-41f5-b06f-8af6f7cfb4bc" x="350" y="13" width="43" height="13"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sucesso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="108f1855-f64d-4d73-964c-2c840553afb5" x="306" y="13" width="44" height="13"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Último]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="33a992a3-4a7b-4d22-80bf-44f6ed9c97c3" x="260" y="13" width="46" height="13"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Maior 1º]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a3759d2b-56a1-4324-a8bd-6599a58e9855" x="214" y="13" width="46" height="13"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Média 1º]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2b756493-92cd-48aa-8171-9c3ab12b905b" x="172" y="13" width="42" height="13"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="13" splitType="Stretch">
+			<textField evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement uuid="d71a01e4-9bb1-4e47-a5ae-ea11f00c4283" x="509" y="0" width="46" height="13"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="97f1cb09-bbe5-454a-acd8-c785161b1c45" x="393" y="0" width="116" height="13"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="23" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8727eef5-5aa0-4058-8552-1504994f8dd3" x="62" y="10" width="43" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{ContactTries_TotalSum}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="817fa8d3-f4f3-429d-aab4-0f616f8f3584" x="105" y="10" width="41" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{QueueCount_TotalSum}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0 %" isBlankWhenNull="true">
+				<reportElement uuid="96c4aa30-76d8-42f1-a1d8-cfaf2b56b1da" x="146" y="10" width="26" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double(   ((double)$V{QueueCount_TotalSum}.longValue())   /   ((double)$V{ContactTries_TotalSum}.longValue())   )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="e345ee31-ccb5-4eec-a158-7d778316d056" x="172" y="10" width="42" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{ReturnTries_TotalSum}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement uuid="5139819c-2989-43fd-8398-1a7bba2604b9" x="214" y="10" width="46" height="13"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new java.text.DecimalFormat("0").format( Math.floor($V{UntilFirstReturn_TotalAvg}.doubleValue() / 60.0D) )) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{UntilFirstReturn_TotalAvg}.doubleValue() % 60.0D) ))]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement uuid="6f7df197-bf34-4bff-9122-98671a07e184" x="260" y="10" width="46" height="13"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new java.text.DecimalFormat("0").format( Math.floor($V{UntilFirstReturn_TotalMax}.doubleValue() / 60.0D) )) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{UntilFirstReturn_TotalMax}.doubleValue() % 60.0D) ))]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement uuid="0132ce4a-a65b-4720-be04-4a557bc1af1f" x="306" y="10" width="44" height="13"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new java.text.DecimalFormat("0").format( Math.floor($V{UntilLastReturn_TotalAvg}.doubleValue() / 60.0D) )) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{UntilLastReturn_TotalAvg}.doubleValue() % 60.0D) ))]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement uuid="e5c4fc90-0fe6-40be-802a-4ad88bd7a06b" x="350" y="10" width="43" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Success_TotalSum}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0 %" isBlankWhenNull="true">
+				<reportElement uuid="89d27161-15a8-48d7-b642-1127fdd56245" x="393" y="10" width="26" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double(  ((double)$V{Success_TotalSum}.longValue())    /    ((double)$V{QueueCount_TotalSum}.longValue())   )]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement uuid="c7d524ec-6c1d-45ab-941b-84c0be6e7085" x="419" y="10" width="45" height="13"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new java.text.DecimalFormat("0").format( Math.floor($V{RingTime_TotalAvg}.doubleValue() / 60.0D) )) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{RingTime_TotalAvg}.doubleValue() % 60.0D) ))]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement uuid="7d41aeb5-7594-46c1-8ca9-d7a4cef7a479" x="464" y="10" width="45" height="13"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new java.text.DecimalFormat("0").format( Math.floor($V{CallTime_TotalAvg}.doubleValue() / 60.0D) )) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{CallTime_TotalAvg}.doubleValue() % 60.0D) ))]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement uuid="b96fc396-c0f5-4f89-afb6-fc42365680c7" x="509" y="10" width="46" height="13"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new java.text.DecimalFormat("0").format( Math.floor($V{CallTime_TotalMax}.doubleValue() / 60.0D) )) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{CallTime_TotalMax}.doubleValue() % 60.0D) ))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="bc3b95b1-c123-4c10-a0c9-7c772b4da806" x="0" y="10" width="62" height="13"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resumo]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="681ed3dc-852b-456f-9f62-a04b17ae02d0" x="0" y="4" width="555" height="1"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,1375 @@
+ /*
+ *  Leandro Gomes - JUST DIGITAL - 02/10/2009
+ * 
+ */
+
+@import "colors-scheme-default.css";
+
+* {
+	margin:0;
+	padding:0;
+	list-style:none;
+	vertical-align:baseline;
+	zoom: 1;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+img {
+	border: 0;
+}
+
+body {
+	font:11px "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color: #000;
+	background: url(../IMAGES/bg-body.gif) repeat-x;
+	outline: none;
+	-moz-outline: none;
+	overflow-y: scroll;
+	*overflow-y: none;
+	*overflow-x: none;
+	visibility:hidden;
+}
+
+body.home {
+	font:11px "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color: #000;
+	background: url(../IMAGES/bg-body-home.gif) repeat-x;
+	outline: none;
+	-moz-outline: none;
+	overflow-y: scroll;
+	*overflow-y: none;
+	*overflow-x: none;
+	visibility:hidden;
+}
+
+div.outer {
+	position: relative;
+	width:100%;
+	min-width: 1024px;
+}
+
+body.home div.outer div.limit {
+	display: block;
+	position: relative;
+	margin: 0 auto;
+	width: 1003px;
+}
+
+div.outer div.limit {
+	display: block;
+	position: relative;
+	margin: 0 auto;
+	width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+/* START HEADER */
+div.outer div.limit div.header {
+	position:relative;
+	height: 102px;
+}
+
+div.outer div.limit div.header div.outras-aplicacoes {
+	height:38px;
+	margin-bottom:5px;
+	background:url(../IMAGES/bg-menu-aplicacoes.gif) left 31px repeat-x;
+}
+
+div.outer div.limit div.header div.outras-aplicacoes strong {
+	float:left;
+	font-weight:bold;
+	color:#FFFFFF;
+	padding: 9px 10px 0 10px;
+	height:22px;
+}
+
+div.outer div.limit div.header div.outras-aplicacoes ul {
+	height:31px;
+}
+
+div.outer div.limit div.header div.outras-aplicacoes ul li {
+	float:left;
+	color:#FFFFFF;
+	margin-right:10px;
+	margin-top:3px;
+	height:23px;
+	padding: 5px 10px 0 10px;
+}
+
+div.outer div.limit div.header div.outras-aplicacoes ul li.active {
+	background-color: #f2f2f2;
+	display:block;
+	height:35px;
+	padding: 5px 10px 0 10px;
+}
+
+div.outer div.limit div.header div.outras-aplicacoes ul li.active a {
+	font-weight:bold;
+	text-decoration:none;
+}
+
+
+
+div.outer div.limit div.header div.outras-aplicacoes ul li a{
+	color:#FFFFFF;
+}
+
+div.outer div.limit div.header ul.menu {
+	display:block;
+	position:absolute;
+	right:10px;
+}
+
+div.outer div.limit div.header ul.menu li{
+	float:left;
+	margin-right:10px;
+}
+
+
+div.outer div.limit div.header div.logos {
+	margin-left:15px;
+	margin-bottom:20px;
+	float:left;
+	margin-top:35px;
+}
+
+div.outer div.limit div.header div.logos p{
+	float:left;
+}
+
+div.outer div.limit div.header div.logos p strong {
+	color:#FFFFFF;
+	padding:3px 5px;
+	font-size: 1.5em;
+}
+
+div.outer div.limit div.header div.logos p span {
+	display:block;
+	margin: 5px 0 0 0;
+}
+
+div.outer div.limit div.header div.logos h1 {
+	float: left;
+	margin-left:20px;
+}
+
+div.outer div.limit div.header div.logos h1 a{
+	height:45px;
+	width:99px;
+	text-indent:-999999px;
+	display:block;
+}
+
+div.outer div.limit div.header p.bem-vindo {
+	background: #e9e9e9 url(../IMAGES/seta-bem-vindo.gif) right top no-repeat;
+	padding:8px 22px 9px 19px;
+	height: 33px;
+	float:right;
+	margin-right:15px;
+	margin-top:35px;
+	color:#8a8a8a;
+}
+/* END HEADER*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+div.outer div.limit div.inside {
+	margin-top:50px;
+}
+
+div.outer div.limit div.inside:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+}
+
+
+
+
+
+
+
+
+
+/* START BREADCRUMB  */
+div.outer div.limit div.inside div.breadcrumb {
+	display:block;
+	height: 41px;
+	margin: 0 15px 0 15px;
+	background: #f2f2f2 url(../IMAGES/breadcrumb-bottom-bg.gif) left bottom repeat-x;
+}
+
+div.outer div.limit div.inside div.breadcrumb h3 {
+	width: 243px;
+	color:#fff;
+	text-transform: uppercase;
+	display:block;
+	float:left;
+	padding: 7px 0 0 18px;
+	height: 40px;
+	font-size: 1.2em;
+}
+
+div.outer div.limit div.inside div.breadcrumb strong {
+	display:block;
+	float:left;
+	padding: 11px 0 0 13px;
+}
+
+div.outer div.limit div.inside div.breadcrumb ul {
+	display:block;
+	float:left;
+	padding: 11px 0 0 13px;
+}
+
+div.outer div.limit div.inside div.breadcrumb ul li {
+	display:block;
+	float:left;
+	padding-right: 11px;
+	margin-right: 6px;
+	background: url(../IMAGES/primary-ietm-separator.gif) right 4px no-repeat;
+	color: #6f2476;
+}
+
+div.outer div.limit div.inside div.breadcrumb ul li.last {
+	padding-right: 0;
+	margin-right: 0;
+	background: transparent none;
+}
+
+
+
+/* END BREADCRUMB */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* START SIDEBAR LEFT */
+div.outer div.limit div.inside div.sidebar.first {
+    display: none;
+    float: left;
+    margin: 12px 0 0 15px;
+    padding-bottom: 10px;
+	min-height: 300px;
+}
+
+div.outer div.limit div.inside div.sidebar.first h3 {
+    height: 19px;
+    background-color: #ededed;
+    margin: 20px 5px 12px 5px;
+    color: #5a017f;
+    font-weight: bold;
+    padding: 6px 0 0 14px;
+}
+
+div.outer div.limit div.inside div.sidebar.first a.detail {
+    display:block;
+    background-color: #f6f6f6;
+    margin: 10px 5px;
+    color: #5a017f;
+    font-weight: bold;
+    padding: 3px;
+	text-align: right;
+}
+
+div.sidebar.first ul.menu {
+	display:block;
+	list-style-type: none !important;
+	list-style-position:inside !important;
+	list-style: none !important;
+	padding: 0 !important;
+	float: none;
+}
+
+div.sidebar.first ul.menu li{
+    margin: 0 !important;
+    display: block;
+	padding: 1px 3px 7px 8px;
+	background: url(../IMAGES/sidebar-menu-item-bg.gif) left bottom no-repeat;
+	list-style-type: none !important;
+	list-style: none !important;
+	float:left;
+	clear:both;
+	width: 243px;
+}
+
+div.sidebar.first ul.menu li.first {
+ 	padding: 0 3px 7px 8px;
+}
+
+div.sidebar.first ul.menu li.expanded {
+	padding: 0 3px 7px 0;
+	background: url(../IMAGES//sidebar-menu-item-bg.gif) left 24px no-repeat;
+}
+
+div.sidebar.first ul.menu li.expanded.first {
+	padding: 2px 3px 7px 0;
+}
+
+div.sidebar.first ul.menu li.expanded ul{
+	margin-top: 3px;
+}
+
+div.sidebar.first ul.menu li.expanded ul li {
+	padding: 1px 0 7px 8px;
+	font-size: 0.9em;
+}
+
+div.sidebar.first ul.menu li.expanded ul li.first {
+	padding: 4px 0 7px 8px;
+}
+
+div.sidebar.first ul.menu li a {
+    display: block;
+    color: #545454;
+	text-transform:uppercase;
+	background: transparent none;
+	height: 22px;
+	padding: 2px 0 0 0;
+	text-decoration:none;
+	font-size: 1.1em;
+}
+
+div.sidebar.first ul.menu li.expanded a {
+	padding: 2px 0 0 8px;
+}
+
+div.sidebar.first ul.menu li.expanded.active-trail a {
+	padding: 0 0 7px 8px;
+}
+
+
+div.sidebar.first ul.menu li.expanded ul li a:before {
+	content: "- ";	
+}
+
+div.sidebar.first ul.menu li.active a {
+	background: #e9e9e9 url(../IMAGES/sidebar-menu-item-active.gif) right top no-repeat;
+	padding: 2px 0 0 8px;
+	font-weight: bold;	
+}
+
+
+div.sidebar.first ul.menu li.active-trail a {
+	background: transparent none;
+	padding: 2px 0 0 0;
+	font-weight: bold;
+}
+
+div.sidebar.first ul.menu li.active.active-trail a {
+	background: #e9e9e9 url(../IMAGES/sidebar-menu-item-active.gif) right top no-repeat;
+	padding: 2px 0 0 8px;
+	font-weight: bold;
+}
+
+div.sidebar.first ul.menu li.expanded.active.active-trail a {
+	background: transparent none;
+}
+
+div.sidebar.first ul.menu li.active.active-trail ul li.active.active-trail a {
+	background: #e9e5ed url(../IMAGES//sidebar-menu-item-active.gif) right top no-repeat;
+	padding: 2px 0 0 8px;
+	font-weight: bold;
+}
+
+div.sidebar.first ul.menu li.active.active-trail ul li a {
+	background: transparent none;
+	padding: 2px 0 0 0;
+	font-weight: normal;
+}
+
+div.sidebar.first ul.menu li.expanded.active-trail ul li a {
+	padding: 2px 0 0 0;
+}
+
+
+div.sidebar.first ul.menu li.active-trail ul li a {
+	font-weight: normal;
+}
+
+div.sidebar.first ul.menu li.expanded ul li a {
+	color: #6f2476;
+}
+
+div.sidebar.first ul.menu li.expanded ul li.active a {
+	background: #e9e5ed url(../IMAGES//sidebar-menu-item-active.gif) right top no-repeat;
+	padding: 2px 0 0 8px;
+	font-weight: bold;
+}
+
+
+div.outer div.limit div.two-column-right div.sidebar.first {
+    display: none;
+}
+
+div.outer div.limit div.two-column-left div.sidebar.first, 
+div.outer div.limit div.three-column div.sidebar.first {
+    display: block;
+    width: 243px;
+}
+
+
+div.outer div.limit div.inside div.sidebar.last{
+	float:right;
+	margin-right:15px;
+}
+
+div.outer div.limit div.two-column-right div.sidebar.last,
+div.outer div.limit div.three-column div.sidebar.last {
+	display:block;
+	width: 243px;
+}
+
+div.outer div.limit div.two-column-left div.sidebar.last {
+	display:none;
+}
+
+
+
+
+/* END SIDEBAR LEFT */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* START FORMS */
+div.outer div.limit div.inside div.content form input.entrar {
+	background:url(../IMAGES/bt-entrar.png) no-repeat;
+	height:25px;
+	width:84px;
+	text-indent:-999999px;
+	border:0;
+	padding-top:25px;
+}
+
+div.outer div.limit div.inside div.content form {
+	
+}
+
+div.outer div.limit div.inside div.content form label{
+	font-size: 1em;
+	font-weight:bold;
+	color:#1b1612;
+	margin-right:2px;
+}
+
+div.outer div.limit div.inside div.content form input{
+	height:17px;
+	background-color:#f5f5f5;
+	border:1px solid #dedede;
+}
+
+div.outer div.limit div.inside div.content form textarea{
+	height:80px;
+	width:700px;
+	background-color:#f5f5f5;
+	border:1px solid #dedede;
+}
+
+div.outer div.limit div.inside div.content form input.file{
+	height:22px;
+	background-color:#f5f5f5;
+	border:1px solid #dedede;
+}
+
+
+div.outer div.limit div.inside div.content form input.small{
+	width:40px;	
+}
+
+div.outer div.limit div.inside div.content form input.medium{
+	width:80px;	
+}
+
+div.outer div.limit div.inside div.content form input.large{
+	width:140px;	
+}
+
+div.outer div.limit div.inside div.content form input.extra-large{
+	width:220px;	
+}
+
+div.outer div.limit div.inside div.content form input.super-large{
+	width:350px;	
+}
+
+
+div.outer div.limit div.inside div.content form select.small{
+	width:80px;	
+}
+
+div.outer div.limit div.inside div.content form select.medium{
+	width:140px;	
+}
+
+div.outer div.limit div.inside div.content form select.large{
+	width:350px;	
+}
+
+div.outer div.limit div.inside div.content form input.checkbox{
+	border:0;
+}
+
+div.outer div.limit div.inside div.content form input.radio {
+	border:0;
+
+}
+
+
+
+
+
+
+
+
+
+
+/* START CONTENT */
+div.outer div.limit div.inside div.content {
+    position:relative;
+	padding: 0 0 30px 0;
+	margin: 0 15px 0 15px;
+	min-height: 390px;
+	overflow: hidden;
+	float:none;
+}
+
+body:nth-of-type(1) div.outer div.limit div.inside div.content {
+	overflow:inherit;
+}
+
+div.outer div.limit div.inside div.content:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+}
+
+div.outer div.limit div.two-column-left div.content {
+	margin: 0 15px 0 258px;
+}
+
+div.outer div.limit div.two-column-right div.content {
+	margin: 0 273px 0 15px;
+}
+
+div.outer div.limit div.three-column div.content {
+	margin: 0 273px 0 258px;
+}
+
+div.outer div.limit div.inside div.content h2 {
+    display: block;
+    padding: 12px 0 0 0;
+    margin: 0 0 15px 0;
+    font-weight: bold;
+    font-size: 2em;
+	color: #1b1612;
+	text-transform:uppercase;
+	width: auto;
+}
+
+
+
+div.outer div.limit div.inside td {
+	padding-right:10px;
+}
+
+div.outer div.limit div.inside a.expand {
+	background:url(../IMAGES/seta-down.gif) no-repeat;
+	height: 28px;
+	padding:6px 0 0 43px;
+	display:block;
+	color:#545454;
+	text-decoration:none;
+	font-size: 1.2em;
+	font-weight:bold;
+	margin-top:-5px;
+}
+
+div.outer div.limit div.inside a.expand active {
+	background:url(../IMAGES/seta-up.gif) no-repeat;
+}
+
+
+
+div.outer div.limit div.inside div.sidebar.last a.expand {
+	margin-top:0;
+}
+
+div.outer div.limit div.inside fieldset {
+	border:1px solid #e9e9e9;
+	margin-bottom: 25px;
+	padding:0;
+	width:99%;
+	display:block;
+	padding:5px 0 0 0;
+}
+
+div.outer div.limit div.inside div.main{
+	border:1px solid #e9e9e9;
+	margin-bottom: 25px;
+	padding:0;
+	width:100%;
+	padding:0 0 0 0;
+}
+
+
+div.outer div.limit div.inside fieldset table{
+	margin: 0 10px 5px 10px;
+}
+
+div.outer div.limit div.inside fieldset.main tr td table tr td table{
+	margin: 0 !important;
+}
+
+.hidden{
+	display:none;
+	margin-top:5px;
+	padding:5px;
+}
+
+
+
+
+table caption {
+    padding: 12px 0 0 0;
+    margin: 0 0 5px 0;
+    font-weight: bold;
+    font-size: 1.4em;
+	color: #1b1612;
+	text-transform:uppercase;
+	width: auto;
+	text-align:left;
+}
+
+table.grid {
+	border:1px solid #cecece;
+	border-collapse: collapse;
+	padding:0;
+	margin:0;
+	background:url(../IMAGES/bg-grid.gif) left top repeat-x;
+	width:99%;	
+}
+
+table.grid tfoot.pager tr.list{
+	background:url(../IMAGES/bg-grid.gif) left top repeat-x;
+	height:29px;
+	text-align:left;
+	width:100%;
+}
+
+table.grid tfoot.pager tr.list td{
+	text-align:left;
+
+}
+
+table.grid tfoot.pager tr.list td ul li {
+	float:left;
+	margin:0 5px;
+}
+
+table.grid tfoot.pager tr.list td ul li a.active{
+	font-weight:bold;
+	font-size:1.2em;
+}
+
+table.grid tfoot.pager tr.list td ul li a{
+	color:#333333;
+	text-decoration:none;
+}
+
+
+table.grid tbody {
+	background:none !important;
+}
+
+table.grid td{
+	padding:2px;
+	padding:5px 20px 0 10px;
+	height:25px;
+	text-align:center;
+}
+
+table.grid tr.even{
+	background-color:#e9e9e9;
+}
+
+table.grid th{
+	padding:10px;
+	font-weight:bold;
+}
+
+table.sortable {
+	width:100%;
+
+	
+}
+
+
+
+
+table.sortable th{
+	padding:10px 0px 0 20px;
+	height:32px;
+
+}
+
+table.sortable th span {
+	background: url(../IMAGES/bg-sortable-column-defaut.png) right 0 no-repeat;
+	height:12px;
+	width:10px;
+	padding-left:15px;
+}
+
+table.sortable th.asc span {
+	background: url(../IMAGES/bg-sortable-column-asc.png) right 0 no-repeat;
+}
+
+table.sortable th.desc span {
+	background: url(../IMAGES/bg-sortable-column-desc.png) right 0 no-repeat;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+div.outer div.limit div.inside td.ico-ampliar {
+	background:url(../IMAGES/ico-ampliar.gif) no-repeat;
+	height:16px;
+	width:25px;
+	text-indent:-99999px;
+}
+
+div.outer div.limit div.inside td.ico-ampliar a {
+	display:block;
+}
+
+div.outer div.limit div.inside td.ico-editar {
+	background:url(../IMAGES/ico-editar.gif) no-repeat;
+	height:16px;
+	width:25px;
+	text-indent:-99999px;
+}
+
+div.outer div.limit div.inside td.ico-editar a {
+	display:block;
+
+}
+
+
+
+
+
+
+/* START BOTÕES */
+div.outer div.limit div.inside a.voltar {
+	background:url(../IMAGES/bt-voltar.gif) no-repeat;
+	height:22px;
+	width:82px;
+	display:block;
+	border:0;
+	text-indent:-99999px;
+}
+
+div.outer div.limit div.inside a.cancelar {
+	background:url(../IMAGES/bt-cancelar.gif) no-repeat;
+	height:22px;
+	width:82px;
+	display:block;
+	border:0;
+	text-indent:-99999px;
+}
+
+div.outer div.limit div.inside a.procurar {
+	background:url(../IMAGES/bt-procurar.gif) no-repeat;
+	height:22px;
+	width:82px;
+	display:block;
+	border:0;
+	text-indent:-99999px;
+}
+
+div.outer div.limit div.inside a.pesquisar {
+	background:url(../IMAGES/bt-pesquisar.gif) no-repeat;
+	height:22px;
+	width:82px;
+	display:block;
+	border:0;
+	text-indent:-99999px;
+}
+
+div.outer div.limit div.inside a.limpar {
+	background:url(../IMAGES/bt-limpar.gif) no-repeat;
+	height:22px;
+	width:82px;
+	display:block;
+	border:0;
+	text-indent:-99999px;
+}
+
+div.outer div.limit div.inside a.gravar {
+	background:url(../IMAGES/bt-gravar.gif) no-repeat;
+	height:22px;
+	width:82px;
+	display:block;
+	border:0;
+	text-indent:-99999px;
+}
+
+div.outer div.limit div.inside a.novo-chamado {
+	background:url(../IMAGES/bt-novo-chamado.gif) no-repeat;
+	height:22px;
+	width:114px;
+	display:block;
+	text-indent:-99999px;
+}
+
+
+
+
+/* START BOTÕES */
+
+
+div.outer div.limit div.inside fieldset.buttons{
+	display:block;
+	width:100%;
+	border:0;
+	margin: 10px 0 0 0;
+}
+
+div.outer div.limit div.inside fieldset.buttons ul {
+	float:right;
+}
+
+
+div.outer div.limit div.inside fieldset.buttons li{
+	float:left;
+	margin-left:10px;
+}
+
+div.outer div.limit div.inside ul.action-links{
+	display:block;
+	margin: 5px 0 10px 0;
+	float:right;
+	margin-top:-45px;
+}
+
+div.outer div.limit div.inside ul.action-links li{
+	float:left;
+	margin-left:10px;
+}
+
+
+div.outer div.limit div.inside input.voltar {
+	background:url(../IMAGES/bt-voltar.gif) no-repeat;
+	height:22px !important;
+	width:82px !important;
+	display:block;
+	border:0 !important;
+	text-indent:-99999px;
+	padding-top:22px;
+}
+
+div.outer div.limit div.inside input.cancelar {
+	background:url(../IMAGES/bt-cancelar.gif) no-repeat;
+	height:22px !important;
+	width:82px !important;
+	display:block;
+	border:0 !important;
+	text-indent:-99999px;
+	padding-top:22px;
+}
+
+
+
+div.outer div.limit div.inside input.procurar {
+	background:url(../IMAGES/bt-procurar.gif) no-repeat;
+	height:22px !important;
+	width:82px !important;
+	display:block;
+	border:0 !important;
+	text-indent:-99999px;
+	padding-top:22px;
+}
+
+div.outer div.limit div.inside input.pesquisar {
+	background:url(../IMAGES/bt-pesquisar.gif) no-repeat;
+	height:22px !important;
+	width:82px !important;
+	display:block;
+	border:0 !important;
+	text-indent:-99999px;
+	padding-top:22px;
+}
+
+div.outer div.limit div.inside input.limpar {
+	background:url(../IMAGES/bt-limpar.gif) no-repeat;
+	height:22px !important;
+	width:82px !important;
+	display:block;
+	border:0 !important;
+	text-indent:-99999px;
+	padding-top:22px;
+}
+
+div.outer div.limit div.inside input.gravar {
+	background:url(../IMAGES/bt-gravar.gif) no-repeat;
+	height:22px !important;
+	width:82px !important;
+	display:block;
+	border:0 !important;
+	text-indent:-99999px;
+	padding-top:22px;
+}
+
+
+div.outer div.limit div.inside input.novo-chamado {
+	background:url(../IMAGES/bt-novo-chamado.gif) no-repeat;
+	height:22px;
+	width:114px;
+	display:block;
+	border:0;
+	text-indent:-99999px;
+	padding-top:22px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* START  cockpit */
+div.outer div.limit div.inside div.content ul.cockpit {
+	width: 740px;
+}
+
+
+div.outer div.limit div.inside div.content ul.cockpit li {
+	width:320px;
+	float:left;
+	margin-right:95px;
+	margin-bottom:25px;
+}
+
+div.outer div.limit div.inside div.content ul.cockpit li.last {
+	float:left;
+	margin-right:0;
+}
+
+div.outer div.limit div.inside div.content ul.cockpit li p {
+	color:#1b1612;
+	padding: 5px;
+	width:310px;
+	background-color:#f2f2f2;
+	font-size:1.4em;
+}
+
+div.outer div.limit div.inside div.content ul.cockpit li span.ampliar {
+	float:right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* START HOME INSIDE */
+body.home div.outer div.limit div.header {    
+    position: relative;
+    height: 55px;
+    width: 100%;
+    display: block;
+}
+
+body.home div.outer div.limit div.header p{    
+    width: 100%;
+    display: block;
+	text-align:center;
+	padding-top:15px;
+}
+
+body.home div.outer div.limit div.inside h1 {
+	display: block;
+	height: 45px;
+	width: 99px;
+	margin:0 0 0 450px;
+	text-indent: -999999px;
+}
+
+body.home div.outer div.limit div.inside {
+	background: url(../IMAGES/bg-home.gif) no-repeat;
+	height:488px;
+	width: 1003px;
+	margin: 0;
+	padding:0;
+}
+
+body.home div.outer div.limit div.inside div.content form {
+	width: 372px;
+	padding:0;
+	margin:140px 0 0 310px;
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset {
+	border:0;
+	padding:0;
+	margin:0;
+
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset legend {
+	margin-left:0;
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset legend span{
+	background: url(../IMAGES/bg-login-top.png) no-repeat;
+	height:47px;
+	width:372px;
+	display:block;
+	margin:0;
+	color: #FFFFFF;
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset legend span b{
+	margin: 0 6px 6px 6px;
+	color: #FFFFFF;
+	height:41px;
+	width:360px;
+	display:block;
+	text-align:center;
+	padding-top:10px;
+
+}
+
+
+
+body.home div.outer div.limit div.inside div.content  {
+	margin:0;
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset ul.login {
+	background:url(../IMAGES/bg-login.png) no-repeat;
+	height:131px;
+	width:372px;
+	display:block;
+	padding: 31px 0 0 62px;
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset ul.login li {
+	margin-bottom:20px;
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset ul.login li label {
+	width:48px;
+	display:block;
+	float:left;
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset ul.login li input {
+	height:17px;
+	border:1px solid #dedede;
+	width:164px;
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset.buttons {
+	width:100%;
+	text-align:right;
+	margin-left:-5px;
+}
+
+body.home div.outer div.limit div.inside div.content ul.welcome {
+	margin:70px 0 0 180px;
+}
+
+body.home div.outer div.limit div.inside div.content ul.welcome li {
+	background:url(../IMAGES/bg-box-home-top.png) no-repeat;
+	float:left;
+	width:197px;
+	margin-right:15px;
+}
+
+
+body.home div.outer div.limit div.inside div.content ul.welcome li strong{
+	height: 37px;
+	width:187px;
+	display:block;
+	color:#FFFFFF;
+	text-align:center;
+	padding-top:7px;
+	margin:6px 5px 7px 5px;
+}
+
+body.home div.outer div.limit div.inside div.content ul.welcome li p{
+	background:url(../IMAGES/bg-box-home.png) no-repeat;
+	height: 164px;
+	width:197px;
+	margin:0;
+	padding: 8px 15px 0 15px;
+}
+
+body.home div.outer div.limit div.inside div.content ul.welcome li p span.entrar{
+	background:url(../IMAGES/bt-entrar-1.png) no-repeat;
+	height: 22px;
+	width:82px;
+	margin:0;
+	display:block;
+	text-indent:-999999px;
+	margin:10px 0 0 80px;
+}
+
+body.home div.outer div.limit div.inside div.content ul.welcome li p span.entrar a {
+	display:block;
+	height: 22px;
+	width:82px;
+}
+
+
+
+
+/* START FOOTER */
+div.outer div.footer {
+    width: 100%;    
+    text-align: center;
+	clear:both;    
+	display:block;
+	position:relative;	
+	background:url(../IMAGES/bg-footer.gif) repeat-x;
+	height:54px;
+}
+
+div.outer div.footer p.direitos {
+	padding:14px 0 0 0;
+	color: #4c591c;
+	size: 11px;	
+	background: url(../IMAGES/bg-footer-inside.gif);
+	height:54px;
+	width:1003px;
+	display:block;
+	margin: 0 auto;
+	
+}
+
+div.outer div.footer div.logo {
+	padding:0 0 0 0;
+	color: #545454;
+	size: 11px;	
+	background: #f2f2f2;
+	height:30px;
+	width:100% !important;
+	display:block;
+}
+
+div.outer div.footer div.logo p{
+	width:200px;
+	float:right;
+}
+
+div.outer div.footer div.logo span.company{
+	background:url(../IMAGES/logo-company-rodape.gif) no-repeat;
+	height:24px;
+	width:55px;
+	margin-right:20px;
+	text-indent:-9999999px;
+	position:absolute;
+}
+
+
+div.outer div.footer a {
+	background:url(../IMAGES/assinatura-just.gif) no-repeat;
+	width:137px;
+	height:7px;
+	text-indent:-999999px;
+	display:block;
+	margin-top:15px;
+	float:right;
+	margin-right:10px;
+}
+
+
+/* FOMULARIO */
+
+
+
+
+
+
+
+
+span.ampliar {
+	background: url(../IMAGES/bt-ampliar.gif) no-repeat;
+	width:82px;
+	height:21px;
+	display:block;
+	text-indent:-9999px;
+}
+
+span.ampliar a {
+	width:82px;
+	height:21px;
+	display:block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* START POP */
+a.pop-close {
+	display: block;
+	background:url(../IMAGES/bt-fechar.gif) no-repeat;
+	height:22px;
+	width:68px;
+	text-indent:-99999px;
+	float:left;
+
+}
+
+div.pop-geral {
+	background-color:#fff;
+	border:3px solid #454545;
+	width:653px;
+}
+
+div.pop-geral div.inside {
+	background-color:#fff;
+	width: 643px;
+	padding: 5px;
+	position: relative;
+	height: 500px;
+	padding-top: 20px;
+}
+
+div.pop-geral div.inside h1 {
+	color: #fff;
+	background-color:#4a4a4a;
+	width:560px;
+	height:22px;
+	font-size:1em;
+	margin-right:3px;
+	padding: 0;
+	text-align: left !important;
+	float:left;
+	padding: 4px 0 0 5px;
+	margin-bottom:30px;
+
+	
+}
+
+
+
+div.pop-geral div.inside p {
+	color: #4a4a4a;
+	text-align: left !important;
+	font-size:1em;
+	width:100%;
+	clear:both;
+	margin: 5px 20px 15px 5px;
+}
+

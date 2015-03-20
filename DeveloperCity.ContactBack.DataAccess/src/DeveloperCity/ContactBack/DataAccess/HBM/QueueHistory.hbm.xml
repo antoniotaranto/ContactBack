@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="DeveloperCity.ContactBack.DomainModel.QueueHistory" table="`QueueHistory`">
+    <id column="`QueueHistoryID`" name="QueueHistoryID" type="long" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <timestamp access="field" column="`ModifiedOn`" name="ModifiedOn"/>
+    <property column="`CallTime`" name="CallTime" not-null="true" type="java.util.Date"/>
+    <many-to-one access="property" class="DeveloperCity.ContactBack.DomainModel.Queue" column="`QueueID`" name="Queue"/>
+    <property access="field" column="`CreatedOn`" name="CreatedOn" not-null="true" type="java.util.Date"/>
+  </class>
+</hibernate-mapping>

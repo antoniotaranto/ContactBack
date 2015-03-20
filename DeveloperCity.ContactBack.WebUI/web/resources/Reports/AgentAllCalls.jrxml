@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AgentAllCalls" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" whenResourceMissingType="Empty" uuid="42a48c4f-4bf5-4710-a780-933835814aa0">
+	<property name="ireport.zoom" value="1.652892561983483"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="6"/>
+	<parameter name="StartDate" class="java.util.Date"/>
+	<parameter name="EndDate" class="java.util.Date"/>
+	<parameter name="StartDateValue" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.text.SimpleDateFormat("yyyy-MM-dd").format($P{StartDate})]]></defaultValueExpression>
+	</parameter>
+	<parameter name="EndDateValue" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.text.SimpleDateFormat("yyyy-MM-dd").format($P{EndDate})]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+	`User`.UserID,
+	Name,
+	DirectoryNumber,
+	Terminal,
+	`Call`.StartTime,
+	`Call`.AnswerTime,
+	`Call`.EndTime,
+	`Queue`.CallBackNumber,
+	CASE `Call`.CurrentStatus
+		WHEN 1 THEN "Planejando"
+		WHEN 2 THEN "Discando"
+		WHEN 3 THEN "Ocupado"
+		WHEN 4 THEN "Campainha"
+		WHEN 5 THEN "Agente encerrou"
+		WHEN 6 THEN "Em conversa"
+		WHEN 7 THEN "Sucesso"
+		WHEN 8 THEN "Erro de sistema"
+		WHEN 9 THEN "Caixa Postal"
+		ELSE "Desconhecido"
+		END AS CurrentCallStatus,
+	`Queue`.CallTime
+FROM
+	`Agent`
+		INNER JOIN `User` ON
+			`User`.UserID = `Agent`.UserID
+		LEFT JOIN `Call` ON
+			`Call`.UserID = `User`.UserID
+		LEFT JOIN `Queue` ON
+			`Queue`.QueueID = `Call`.QueueID
+WHERE
+	StartTime BETWEEN '$P!{StartDateValue} 00:00:00' AND '$P!{EndDateValue} 23:59:59' AND
+	EndTime IS NOT NULL
+ORDER BY
+	`User`.Name,
+	`Call`.StartTime]]>
+	</queryString>
+	<field name="UserID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DirectoryNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Terminal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="StartTime" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AnswerTime" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EndTime" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CallBackNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CallTime" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CurrentCallStatus" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="WaitTime" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double(($F{StartTime}.getTime() - $F{CallTime}.getTime()) * 0.001)]]></variableExpression>
+	</variable>
+	<variable name="RingTime" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double(($F{AnswerTime}.getTime() - $F{StartTime}.getTime()) * 0.001)]]></variableExpression>
+	</variable>
+	<variable name="ConversationTime" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double(($F{EndTime}.getTime() - $F{AnswerTime}.getTime()) * 0.001)]]></variableExpression>
+	</variable>
+	<variable name="WaitTime_StartDateAverage" class="java.lang.Double" resetType="Group" resetGroup="StartDate" calculation="Average">
+		<variableExpression><![CDATA[$V{WaitTime}]]></variableExpression>
+	</variable>
+	<variable name="RingTime_StartDateAverage" class="java.lang.Double" resetType="Group" resetGroup="StartDate" calculation="Average">
+		<variableExpression><![CDATA[$V{RingTime}]]></variableExpression>
+	</variable>
+	<variable name="ConversationTime_StartDateAverage" class="java.lang.Double" resetType="Group" resetGroup="StartDate" calculation="Average">
+		<variableExpression><![CDATA[$V{ConversationTime}]]></variableExpression>
+	</variable>
+	<variable name="WaitTime_AgentAverage" class="java.lang.Double" resetType="Group" resetGroup="Agent" calculation="Average">
+		<variableExpression><![CDATA[$V{WaitTime}]]></variableExpression>
+	</variable>
+	<variable name="RingTime_AgentAverage" class="java.lang.Double" resetType="Group" resetGroup="Agent" calculation="Average">
+		<variableExpression><![CDATA[$V{RingTime}]]></variableExpression>
+	</variable>
+	<variable name="ConversationTime_AgentAverage" class="java.lang.Double" resetType="Group" resetGroup="Agent" calculation="Average">
+		<variableExpression><![CDATA[$V{ConversationTime}]]></variableExpression>
+	</variable>
+	<group name="Agent" isStartNewPage="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{UserID}]]></groupExpression>
+		<groupHeader>
+			<band height="24">
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="ae891f98-dbfc-42cf-b244-8d3fa3413741" mode="Opaque" x="0" y="0" width="555" height="20" forecolor="#FFFFFF" backcolor="#4783B6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Name}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="75">
+				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+					<reportElement uuid="1d740c29-d5f7-4917-8e56-8a999c635b88" x="0" y="21" width="555" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Resumo de " + $F{Name}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="32bac49e-e5e2-4544-a89d-e8d98484e60d" x="0" y="35" width="64" height="10"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Chamadas:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="31dd09a6-52d6-4475-90de-d824e7917d9c" x="64" y="35" width="84" height="10"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Agent_COUNT}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="3923e091-abdf-4036-ac84-eeb87e91925e" x="0" y="45" width="64" height="10"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Espera média:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="722bf9ed-9cd0-4fb7-ac90-dd1e9ef08ee9" x="0" y="55" width="64" height="10"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Campainha:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="0454122c-3f1c-432e-81cf-4789f67992d2" x="0" y="65" width="64" height="10"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8" isBold="false"/>
+					</textElement>
+					<text><![CDATA[TMA:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="c4ea338c-eedf-4894-bf3c-bb09e2cf6c35" x="64" y="45" width="84" height="10"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[(new java.text.DecimalFormat("00").format( Math.floor($V{WaitTime_AgentAverage}.doubleValue() / 3600D))) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor(($V{WaitTime_AgentAverage}.doubleValue() / 60D) - (Math.floor($V{WaitTime_AgentAverage}.doubleValue() / 3600D) * 60)))) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{WaitTime_AgentAverage}.doubleValue() % 60.0D) ))]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="6f1afcde-d3a2-4c57-a676-2e77f43bbaf0" x="64" y="55" width="84" height="10"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[(new java.text.DecimalFormat("00").format( Math.floor($V{RingTime_AgentAverage}.doubleValue() / 3600D))) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor(($V{RingTime_AgentAverage}.doubleValue() / 60D) - (Math.floor($V{RingTime_AgentAverage}.doubleValue() / 3600D) * 60)))) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{RingTime_AgentAverage}.doubleValue() % 60.0D) ))]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="bbd454e4-5fb0-4220-8328-5301e5583fd5" x="64" y="65" width="84" height="10"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[(new java.text.DecimalFormat("00").format( Math.floor($V{ConversationTime_AgentAverage}.doubleValue() / 3600D))) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor(($V{ConversationTime_AgentAverage}.doubleValue() / 60D) - (Math.floor($V{ConversationTime_AgentAverage}.doubleValue() / 3600D) * 60)))) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{ConversationTime_AgentAverage}.doubleValue() % 60.0D) ))]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="StartDate" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").parse(
+    new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{StartTime})
+)]]></groupExpression>
+		<groupHeader>
+			<band height="25">
+				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+					<reportElement uuid="7e30883f-37f7-4707-8d2b-c24c82e1978a" x="0" y="0" width="148" height="12"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Tahoma" size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").parse(new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{StartTime}))]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="424833df-24e8-49fc-9629-1a59a36c1265" x="0" y="15" width="64" height="10"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Cliente]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="934cc73b-8a6e-424c-a085-cb0c33616505" x="64" y="15" width="84" height="10"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Contato]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="917aecc9-b6af-4910-bc11-250af1318104" x="160" y="15" width="80" height="10"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Retorno]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="a90d101c-f2bc-49fe-a5cb-dde0a5306fc6" x="466" y="15" width="48" height="10"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Espera]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="9a78d70c-a7d1-4f28-ba44-974e27ee359f" x="240" y="15" width="80" height="10"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Atendimento]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="83f92f01-a605-4d22-a5cf-010cb14bb24a" x="320" y="15" width="80" height="10"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Encerramento]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="b5b8cecb-49ae-4193-b770-7815ddb19c13" x="514" y="15" width="41" height="10"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Chamada]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="38d3c455-788d-4642-9425-fbcaee7ccadf" x="400" y="15" width="66" height="10"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Status]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="23">
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="dba31868-1042-4d3a-85fe-4e6a1fe0a904" x="466" y="0" width="48" height="14"/>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[(new java.text.DecimalFormat("00").format( Math.floor($V{WaitTime_StartDateAverage}.doubleValue() / 3600D))) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor(($V{WaitTime_StartDateAverage}.doubleValue() / 60D) - (Math.floor($V{WaitTime_StartDateAverage}.doubleValue() / 3600D) * 60)))) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{WaitTime_StartDateAverage}.doubleValue() % 60.0D) ))]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="eca7d961-4f47-4849-a9c4-6c8dfd4d4098" x="514" y="0" width="41" height="14"/>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[(new java.text.DecimalFormat("00").format( Math.floor($V{ConversationTime_StartDateAverage}.doubleValue() / 3600D))) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor(($V{ConversationTime_StartDateAverage}.doubleValue() / 60D) - (Math.floor($V{ConversationTime_StartDateAverage}.doubleValue() / 3600D) * 60)))) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{ConversationTime_StartDateAverage}.doubleValue() % 60.0D) ))]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+					<reportElement uuid="8550205b-d030-40f9-9073-9ca1ddbe08af" x="0" y="0" width="148" height="14"/>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Médias de " + new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{StartTime})]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="d9135ffd-fe19-4c18-944c-2a59567782fd" x="160" y="0" width="80" height="14"/>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{StartDate_COUNT}.toString() + " chamadas"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="76" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="5284c539-71e3-4672-bdc1-0d2dce3f1d14" x="160" y="0" width="240" height="76"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="20" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Tentativas
+Realizadas]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yy HH:mm:ss" isBlankWhenNull="true">
+				<reportElement uuid="7a251af1-2cd3-42ef-ad67-0b27aa412819" x="411" y="0" width="144" height="76"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement uuid="bdf1009d-653a-4cdf-8c68-b0af9e673029" x="0" y="0" width="148" height="76"/>
+				<imageExpression><![CDATA["../IMAGES/Danone.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="913d9513-7fca-455f-8536-0e6c34b822b1" x="0" y="0" width="555" height="13"/>
+				<textElement>
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Filtro:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="28eb763a-61ce-499a-8ff7-04310039c153" x="0" y="13" width="555" height="11"/>
+				<textElement>
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Entre " + new java.text.SimpleDateFormat("dd/MM/yy").format($P{StartDate})
+ + " e "
++ new java.text.SimpleDateFormat("dd/MM/yy").format($P{EndDate})]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="10" splitType="Stretch">
+			<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement uuid="c9c4ab94-6d36-445c-b1de-46b65b7f4d82" x="160" y="0" width="80" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{StartTime}]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement uuid="343c6c15-7b3a-41a5-865c-c0b7f2c6894e" x="240" y="0" width="80" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{AnswerTime}]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement uuid="b31b54a7-cfce-428e-8676-2f4542dc00df" x="320" y="0" width="80" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EndTime}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="98462bc9-5750-4528-8395-36af2d60abe9" x="0" y="0" width="64" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CallBackNumber}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH:mm:ss" isBlankWhenNull="true">
+				<reportElement uuid="86161d63-3704-4c84-ac3a-d9cc89bf014f" x="64" y="0" width="84" height="10"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CallTime}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="a4b11a67-23e7-4fd2-be24-bbf55950a1de" x="466" y="0" width="48" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new java.text.DecimalFormat("00").format( Math.floor($V{WaitTime}.doubleValue() / 3600D))) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor(($V{WaitTime}.doubleValue() / 60D) - (Math.floor($V{WaitTime}.doubleValue() / 3600D) * 60)))) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{WaitTime}.doubleValue() % 60.0D) ))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="106e9f2b-f2f1-4360-b288-316d6ca9bffb" x="514" y="0" width="41" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new java.text.DecimalFormat("00").format( Math.floor($V{ConversationTime}.doubleValue() / 3600D))) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor(($V{ConversationTime}.doubleValue() / 60D) - (Math.floor($V{ConversationTime}.doubleValue() / 3600D) * 60)))) + ":" +
+(new java.text.DecimalFormat("00").format( Math.floor($V{ConversationTime}.doubleValue() % 60.0D) ))]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement uuid="2c4b4185-94ce-466a-8874-b6f282b6c0a7" x="400" y="0" width="66" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CurrentCallStatus}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="13" splitType="Stretch">
+			<textField evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement uuid="2d235d51-e7e9-445d-bebd-b3ab075c45bc" x="514" y="0" width="41" height="13"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="7f28a53a-c695-4935-b4e1-4bb7fa8972e3" x="411" y="0" width="103" height="13"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="6" splitType="Stretch"/>
+	</summary>
+</jasperReport>

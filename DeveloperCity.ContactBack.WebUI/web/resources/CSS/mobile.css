@@ -1,0 +1,23 @@
+*, body, p, li, span, div, ul, table, tr, td, th, h1, h2, h3, h4, h5, fieldset, form, input, select, textarea, label {
+    margin:0;
+    padding:0;
+    list-style:none;
+    vertical-align:baseline;
+    zoom: 1;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Tahoma, Verdana, Helvetica, Arial, sans-serif;
+}
+body { padding: 4px; }
+h1 { font-size: 15pt; margin: 7px 0; }
+h2 { font-size: 12pt; margin: 5px 0; }
+ul#details { border: double 3px black; padding: 10px; padding-bottom: 0px; }
+ul#details li { font-size: 9pt; display: block; margin-bottom: 10px; }
+ul#details li span { font-size: 11pt; font-weight: bold; display: block; }
+fieldset.formList { padding: 5px; margin-top: 15px; }
+fieldset.formList legend { margin-left: 10px; padding: 0 5px; font-size: 8pt; font-weight: bold; }
+fieldset.formList ul li label { font-size: 9pt; display: block; }
+fieldset.formList ul li input { font-size: 13pt; display: block; margin-bottom: 10px; width: 100%; padding: 3px; }
+fieldset.formList ul li#btnSubmit input { font-size: 11pt; font-weight: bold; display: block; width: auto; padding: 6px; background: #bbf; }
+span#errorLabel { color: red; font-weight: bold; font-size: 9pt; text-align: center; display: block; }

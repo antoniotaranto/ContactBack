@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="DeveloperCity.ContactBack.DomainModel.Setup" table="`Setup`">
+    <id column="`SetupID`" name="SetupID" type="short" unsaved-value="0">
+      <generator class="assigned"/>
+    </id>
+    <timestamp access="field" column="`ModifiedOn`" name="ModifiedOn"/>
+    <property column="`TimeBetweenCallBacks`" name="TimeBetweenCallBacks" not-null="true" type="int"/>
+    <property column="`LateCallBackAfter`" name="LateCallBackAfter" not-null="false" type="java.lang.Integer"/>
+    <property column="`LateCallBackTime`" name="LateCallBackTime" not-null="false" type="java.lang.Integer"/>
+    <property column="`EndOfQueue`" name="EndOfQueue" not-null="true" type="int"/>
+    <property column="`MaxCallBacks`" name="MaxCallBacks" not-null="true" type="int"/>
+    <property column="`CTI_DeviceName`" length="100" name="CTI_DeviceName" not-null="true" type="java.lang.String"/>
+    <property column="`IVR_DeviceName`" length="100" name="IVR_DeviceName" not-null="true" type="java.lang.String"/>
+    <property column="`VoiceFolder`" length="255" name="VoiceFolder" not-null="true" type="java.lang.String"/>
+    <property column="`PrefixDial`" length="10" name="PrefixDial" not-null="false" type="java.lang.String"/>
+    <property column="`InternalExtensionDestination`" name="InternalExtensionDestination" not-null="true" type="DeveloperCity.ContactBack.DataAccess.UserTypes.DestinationType"/>
+    <property column="`MobilePhoneDestination`" name="MobilePhoneDestination" not-null="true" type="DeveloperCity.ContactBack.DataAccess.UserTypes.DestinationType"/>
+    <property column="`LandLineDestination`" name="LandLineDestination" not-null="true" type="DeveloperCity.ContactBack.DataAccess.UserTypes.DestinationType"/>
+    <property column="`InvalidNumberDestination`" name="InvalidNumberDestination" not-null="true" type="DeveloperCity.ContactBack.DataAccess.UserTypes.DestinationType"/>
+    <property access="field" column="`CreatedOn`" name="CreatedOn" not-null="true" type="java.util.Date"/>
+    <property column="`ShiftWeekdayStartHour`" name="ShiftWeekdayStartHour" not-null="true" type="short"/>
+    <property column="`ShiftWeekdayEndHour`" name="ShiftWeekdayEndHour" not-null="true" type="short"/>
+    <property column="`ShiftWeekdayStartMinute`" name="ShiftWeekdayStartMinute" not-null="true" type="short"/>
+    <property column="`ShiftWeekdayEndMinute`" name="ShiftWeekdayEndMinute" not-null="true" type="short"/>
+    <property column="`ShiftSaturdayStartHour`" name="ShiftSaturdayStartHour" not-null="true" type="short"/>
+    <property column="`ShiftSaturdayEndHour`" name="ShiftSaturdayEndHour" not-null="true" type="short"/>
+    <property column="`ShiftSaturdayStartMinute`" name="ShiftSaturdayStartMinute" not-null="true" type="short"/>
+    <property column="`ShiftSaturdayEndMinute`" name="ShiftSaturdayEndMinute" not-null="true" type="short"/>
+    <property column="`QueueSuccessDevice`" length="100" name="QueueSuccessDevice" not-null="true" type="java.lang.String"/>
+    <property column="`QueueAlreadyDevice`" length="100" name="QueueAlreadyDevice" not-null="true" type="java.lang.String"/>
+    <property column="`QueueInvalidNumberDevice`" length="100" name="QueueInvalidNumberDevice" not-null="true" type="java.lang.String"/>
+    <property column="`QueueNotInShiftTimeDevice`" length="100" name="QueueNotInShiftTimeDevice" not-null="true" type="java.lang.String"/>
+    <property column="`SMSUrl`" length="255" name="SMSUrl" not-null="true" type="java.lang.String"/>
+    <property column="`SMSMessage`" length="150" name="SMSMessage" not-null="true" type="java.lang.String"/>
+    <property column="`SMSAccount`" length="50" name="SMSAccount" not-null="true" type="java.lang.String"/>
+    <property column="`SMSCode`" length="50" name="SMSCode" not-null="true" type="java.lang.String"/>
+    <property column="`SMSFrom`" length="15" name="SMSFrom" not-null="true" type="java.lang.String"/>
+    <property column="`DefaultPassword`" length="50" name="DefaultPassword" not-null="true" type="java.lang.String"/>
+    <property column="`ProxyIP`" length="15" name="ProxyIP" not-null="false" type="java.lang.String"/>
+    <property column="`ProxyPort`" name="ProxyPort" not-null="false" type="java.lang.Integer" />
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,1768 @@
+﻿@import "colors-scheme-blue.css";
+
+* {
+	margin:0;
+	padding:0;
+	list-style:none;
+	vertical-align:baseline;
+	zoom: 1;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+	
+}
+
+img {
+	border: 0;
+}
+body {
+	font:11px "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color: #000;
+	background: url(/CAC/resources/IMAGES/bg-body.gif) repeat-x;
+	outline: none;
+	-moz-outline: none;
+	overflow-y: scroll;
+	*overflow-y: none;
+	*overflow-x: none;
+	visibility:hidden;
+}
+
+body.home {
+	font:11px "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color: #000;
+	background: #f2f2f2 url(/CAC/resources/IMAGES/bg-body-home.gif) repeat-x;
+	outline: none;
+	-moz-outline: none;
+	overflow-y: scroll;
+	*overflow-y: none;
+	*overflow-x: none;
+	visibility:hidden;
+}
+
+div.outer {
+	position: relative;
+	width:100%;
+	min-width: 1003px;
+}
+
+body.home div.outer div.limit {
+	display: block;
+	position: relative;
+	margin: 0 auto;
+	min-width: 1003px;
+}
+
+div.outer div.limit {
+	display: block;
+	position: relative;
+	margin: 0 auto;
+	width: 100%;
+	min-width: 1003px;
+}
+
+
+
+
+
+
+
+
+
+
+/* START HEADER */
+div.outer div.limit div.header {
+	position:relative;
+	height: 102px;
+}
+
+div.outer div.limit div.header div.outras-aplicacoes {
+	height:38px;
+	margin-bottom:5px;
+	background:url(/CAC/resources/IMAGES/bg-menu-aplicacoes.gif) left 31px repeat-x;
+}
+
+div.outer div.limit div.header div.outras-aplicacoes strong {
+	float:left;
+	font-weight:bold;
+	color:#FFFFFF;
+	padding: 9px 10px 0 10px;
+	height:22px;
+}
+
+div.outer div.limit div.header div.outras-aplicacoes ul {
+	height:31px;
+}
+
+div.outer div.limit div.header div.outras-aplicacoes ul li {
+	float:left;
+	color:#FFFFFF;
+	margin-right:10px;
+	margin-top:3px;
+	height:23px;
+	padding: 5px 10px 0 10px;
+}
+
+div.outer div.limit div.header div.outras-aplicacoes ul li.active {
+	background-color: #f2f2f2;
+	display:block;
+	height:35px;
+	padding: 5px 10px 0 10px;
+}
+
+div.outer div.limit div.header div.outras-aplicacoes ul li.active a {
+	font-weight:bold;
+	text-decoration:none;
+}
+
+
+
+div.outer div.limit div.header div.outras-aplicacoes ul li a{
+	color:#FFFFFF;
+}
+
+div.outer div.limit div.header ul.menu {
+	display:block;
+	position:absolute;
+	right:10px;
+}
+
+div.outer div.limit div.header ul.menu li{
+	float:left;
+	margin-right:10px;
+}
+
+
+div.outer div.limit div.header div.logos {
+	margin-left:15px;
+	margin-bottom:-100px;
+	float:left;
+	margin-top:35px;
+}
+
+div.outer div.limit div.header div.logos p{
+	float:left;
+}
+
+div.outer div.limit div.header div.logos p strong {
+	color:#FFFFFF;
+	padding:3px 5px;
+	font-size: 1.5em;
+}
+
+div.outer > div.limit > div.header > div.logos > p > span {
+	display:block;
+	margin: 5px 0 0 0;
+}
+
+div.outer div.limit div.header div.logos h1 {
+	float: left;
+	margin-left:20px;
+}
+
+div.outer div.limit div.header div.logos h1 a{
+	height:121px;
+	width:223px;
+        margin-top: -42px;
+	text-indent:-999999px;
+	display:block;
+}
+
+div.outer div.limit div.header p.bem-vindo {
+	background: #e9e9e9 url(/CAC/resources/IMAGES/seta-bem-vindo.gif) right top no-repeat;
+	padding:8px 22px 9px 19px;
+	height: 33px;
+	float:right;
+	margin-right:15px;
+	margin-top:35px;
+	color:#8a8a8a;
+}
+
+
+/* END HEADER*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+div.outer div.limit div.inside {
+	margin-top:50px;
+}
+
+div.outer div.limit div.inside:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+}
+
+
+
+
+
+
+
+
+
+/* START BREADCRUMB  */
+div.outer div.limit div.inside div.breadcrumb {
+	display:block;
+	height: 41px;
+	margin: 0 15px 0 15px;
+	background: #f2f2f2 url(/CAC/resources/IMAGES/breadcrumb-bottom-bg.gif) left bottom repeat-x;
+}
+
+div.outer div.limit div.inside div.breadcrumb h3 {
+	width: 243px;
+	color:#fff;
+	text-transform: uppercase;
+	display:block;
+	float:left;
+	padding: 7px 0 0 18px;
+	height: 40px;
+	font-size: 1.2em;
+}
+
+div.outer div.limit div.inside div.breadcrumb strong {
+	display:block;
+	float:left;
+	padding: 11px 0 0 13px;
+}
+
+div.outer div.limit div.inside div.breadcrumb ul {
+	display:block;
+	float:left;
+	padding: 11px 0 0 13px;
+}
+
+div.outer div.limit div.inside div.breadcrumb ul li {
+	display:block;
+	float:left;
+	padding-right: 11px;
+	margin-right: 6px;
+	background: url(/CAC/resources/IMAGES/primary-ietm-separator.gif) right 4px no-repeat;
+	color: #6f2476;
+}
+
+div.outer div.limit div.inside div.breadcrumb ul li.last {
+	padding-right: 0;
+	margin-right: 0;
+	background: transparent none;
+}
+
+
+
+/* END BREADCRUMB */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* START SIDEBAR LEFT */
+div.outer div.limit div.inside div.sidebar.first {
+    display: none;
+    float: left;
+    margin: 12px 0 0 15px;
+    padding-bottom: 10px;
+	min-height: 300px;
+}
+
+div.outer div.limit div.inside div.sidebar.first h3 {
+    height: 19px;
+    background-color: #ededed;
+    margin: 20px 5px 12px 5px;
+    color: #5a017f;
+    font-weight: bold;
+    padding: 6px 0 0 14px;
+}
+
+div.outer div.limit div.inside div.sidebar.first a.detail {
+    display:block;
+    background-color: #f6f6f6;
+    margin: 10px 5px;
+    color: #5a017f;
+    font-weight: bold;
+    padding: 3px;
+	text-align: right;
+}
+
+div.sidebar.first ul.menu {
+	display:block;
+	list-style-type: none !important;
+	list-style-position:inside !important;
+	list-style: none !important;
+	padding: 0 !important;
+	float: none;
+}
+
+div.sidebar.first ul.menu li{
+    margin: 0 !important;
+    display: block;
+	padding: 1px 3px 7px 8px;
+	background: url(/CAC/resources/IMAGES/sidebar-menu-item-bg.gif) left bottom no-repeat;
+	list-style-type: none !important;
+	list-style: none !important;
+	float:left;
+	clear:both;
+	width: 243px;
+}
+
+div.sidebar.first ul.menu li.first {
+ 	padding: 0 3px 7px 8px;
+}
+
+div.sidebar.first ul.menu li.expanded {
+	padding: 0 3px 7px 0;
+	background: url(/CAC/resources/IMAGES//sidebar-menu-item-bg.gif) left 24px no-repeat;
+}
+
+div.sidebar.first ul.menu li.expanded.first {
+	padding: 2px 3px 7px 0;
+}
+
+div.sidebar.first ul.menu li.expanded ul{
+	margin-top: 3px;
+}
+
+div.sidebar.first ul.menu li.expanded ul li {
+	padding: 1px 0 7px 8px;
+	font-size: 0.9em;
+}
+
+div.sidebar.first ul.menu li.expanded ul li.first {
+	padding: 4px 0 7px 8px;
+}
+
+div.sidebar.first ul.menu li a {
+    display: block;
+    color: #545454;
+	text-transform:uppercase;
+	background: transparent none;
+	height: 22px;
+	padding: 2px 0 0 0;
+	text-decoration:none;
+	font-size: 1.1em;
+}
+
+div.sidebar.first ul.menu li.expanded a {
+	padding: 2px 0 0 8px;
+}
+
+div.sidebar.first ul.menu li.expanded.active-trail a {
+	padding: 0 0 7px 8px;
+}
+
+
+div.sidebar.first ul.menu li.expanded ul li a:before {
+	content: "- ";	
+}
+
+div.sidebar.first ul.menu li.active a {
+	background: #e9e9e9 url(/CAC/resources/IMAGES/sidebar-menu-item-active.gif) right top no-repeat;
+	padding: 2px 0 0 8px;
+	font-weight: bold;	
+}
+
+
+div.sidebar.first ul.menu li.active-trail a {
+	background: transparent none;
+	padding: 2px 0 0 0;
+	font-weight: bold;
+}
+
+div.sidebar.first ul.menu li.active.active-trail a {
+	background: #e9e9e9 url(/CAC/resources/IMAGES/sidebar-menu-item-active.gif) right top no-repeat;
+	padding: 2px 0 0 8px;
+	font-weight: bold;
+}
+
+div.sidebar.first ul.menu li.expanded.active.active-trail a {
+	background: transparent none;
+}
+
+div.sidebar.first ul.menu li.active.active-trail ul li.active.active-trail a {
+	background: #e9e5ed url(/CAC/resources/IMAGES//sidebar-menu-item-active.gif) right top no-repeat;
+	padding: 2px 0 0 8px;
+	font-weight: bold;
+}
+
+div.sidebar.first ul.menu li.active.active-trail ul li a {
+	background: transparent none;
+	padding: 2px 0 0 0;
+	font-weight: normal;
+}
+
+div.sidebar.first ul.menu li.expanded.active-trail ul li a {
+	padding: 2px 0 0 0;
+}
+
+
+div.sidebar.first ul.menu li.active-trail ul li a {
+	font-weight: normal;
+}
+
+div.sidebar.first ul.menu li.expanded ul li a {
+	color: #6f2476;
+}
+
+div.sidebar.first ul.menu li.expanded ul li.active a {
+	background: #e9e5ed url(/CAC/resources/IMAGES//sidebar-menu-item-active.gif) right top no-repeat;
+	padding: 2px 0 0 8px;
+	font-weight: bold;
+}
+
+
+div.outer div.limit div.two-column-right div.sidebar.first {
+    display: none;
+}
+
+div.outer div.limit div.two-column-left div.sidebar.first, 
+div.outer div.limit div.three-column div.sidebar.first {
+    display: block;
+    width: 243px;
+}
+
+
+div.outer div.limit div.inside div.sidebar.last{
+	float:right;
+	margin-right:15px;
+}
+
+div.outer div.limit div.two-column-right div.sidebar.last,
+div.outer div.limit div.three-column div.sidebar.last {
+	display:block;
+	width: 243px;
+}
+
+div.outer div.limit div.two-column-left div.sidebar.last {
+	display:none;
+}
+
+
+
+
+/* END SIDEBAR LEFT */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* START FORMS */
+
+div.outer div.limit div.inside div.content form {
+	
+}
+
+div.outer div.limit div.inside div.content form label{
+	font-size: 1em;
+	font-weight:bold;
+	color:#1b1612;
+	margin-right:2px;
+}
+
+div.outer div.limit div.inside div.content input{
+	height:17px;
+	background-color:#f5f5f5;
+	border:1px solid #dedede;
+	font-size: 1em;
+	color:#1b1612;	
+
+}
+
+textarea{
+	height:80px;
+	width:auto;
+	background-color:#f5f5f5;
+	border:1px solid #dedede;
+	font-size: 1em;
+	color:#1b1612;	
+}
+
+div.outer div.limit div.inside div.content form input.file{
+	height:22px;
+	background-color:#f5f5f5;
+	border:1px solid #dedede;
+}
+
+
+input.small{
+	width:40px;	
+}
+
+div.outer div.limit div.inside div.content form input.medium{
+	width:80px;	
+}
+
+div.outer div.limit div.inside div.content form input.large{
+	width:140px;	
+}
+
+div.outer div.limit div.inside div.content form input.extra-large{
+	width:220px;	
+}
+
+div.outer div.limit div.inside div.content form input.super-large{
+	width:350px;	
+}
+
+
+select {
+	background-color:#f5f5f5;
+	border:1px solid #dedede;
+	font-size: 1em;
+	color:#1b1612;
+		
+}
+	
+div.outer div.limit div.inside div.content form select.small{
+	width:80px;	
+
+}
+
+div.outer div.limit div.inside div.content form select.medium{
+	width:140px;	
+}
+
+div.outer div.limit div.inside div.content form select.large{
+	width:350px;	
+}
+
+div.outer div.limit div.inside div.content form input.checkbox{
+	border:0;
+}
+
+div.outer div.limit div.inside div.content form input.radio {
+	border:0;
+
+}
+
+
+
+
+
+
+
+
+
+
+/* START CONTENT */
+div.outer div.limit div.inside div.content {
+    position:relative;
+	padding: 0 0 30px 0;
+	margin: 0 15px 0 15px;
+	min-height: 390px;
+	overflow: hidden;
+	float:none;
+}
+
+body:nth-of-type(1) div.outer div.limit div.inside div.content {
+	overflow:inherit;
+}
+
+div.outer div.limit div.inside div.content:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+}
+
+div.outer div.limit div.two-column-left div.content {
+	margin: 0 15px 0 258px;
+}
+
+div.outer div.limit div.two-column-right div.content {
+	margin: 0 273px 0 15px;
+}
+
+div.outer div.limit div.three-column div.content {
+	margin: 0 273px 0 258px;
+}
+
+div.outer div.limit div.inside div.content h2 {
+    display: block;
+    padding: 12px 0 0 0;
+    margin: 0 0 15px 0;
+    font-weight: bold;
+    font-size: 2em;
+	color: #1b1612;
+	text-transform:uppercase;
+	width: auto;
+}
+
+
+
+div.outer div.limit div.inside td {
+	padding-right:10px;
+}
+
+div.outer div.limit div.inside a.expand {
+	background:url(/CAC/resources/IMAGES/seta-down.gif) no-repeat;
+	height: 28px;
+	padding:6px 0 0 43px;
+	display:block;
+	color:#545454;
+	text-decoration:none;
+	font-size: 1.2em;
+	font-weight:bold;
+	margin-top:-5px;
+}
+
+div.outer div.limit div.inside a.expand.active {
+	background:url(/CAC/resources/IMAGES/seta-up.gif) no-repeat;
+}
+
+div.outer div.limit div.inside a.collapse {
+	background:url(/CAC/resources/IMAGES/seta-up.gif) no-repeat;
+	height: 28px;
+	padding:6px 0 0 43px;
+	display:block;
+	color:#545454;
+	text-decoration:none;
+	font-size: 1.2em;
+	font-weight:bold;
+	margin-top:-5px;
+}
+
+div.outer div.limit div.inside a.collapse.active {
+	background:url(/CAC/resources/IMAGES/seta-down.gif) no-repeat;
+}
+
+
+
+div.outer div.limit div.inside div.sidebar.last a.expand {
+	margin-top:0;
+}
+
+div.outer div.limit div.inside fieldset {
+	border:1px solid #e9e9e9;
+	margin-bottom: 25px;
+	padding:0;
+	width:99%;
+	display:block;
+	padding:5px 0 0 0;
+}
+
+div.outer div.limit div.inside div.main{
+	border:1px solid #e9e9e9;
+	margin-bottom: 25px;
+	padding:0;
+	width:100%;
+	padding:0 0 0 0;
+}
+
+
+div.outer div.limit div.inside fieldset table{
+	margin: 0 10px 5px 10px;
+}
+
+div.outer div.limit div.inside fieldset.main tr td table tr td table{
+	margin: 0 !important;
+}
+
+.hidden{
+	display:none;
+	margin-top:5px;
+	padding:5px;
+}
+
+
+
+
+span.tit-table {
+    padding: 12px 0 0 0;
+    margin: 0 0 0 0;
+    font-weight: bold;
+    font-size: 1.4em;
+	color: #1b1612;
+	text-transform:uppercase;
+	width: auto;
+	display: block;
+	text-align:left;
+}
+
+table.grid {
+	border:1px solid #cecece;
+	border-collapse: collapse;
+	padding:10px 0 0 0;
+	margin:0;
+	background:url(/CAC/resources/IMAGES/bg-grid.gif) left top repeat-x;
+	width:99%;	
+}
+
+table.grid a {
+	text-decoration: none;
+	color:#333333;
+}
+
+table.grid tr.pager{
+	background:url(/CAC/resources/IMAGES/bg-grid.gif) left top repeat-x;
+	height:29px;
+	text-align:left;
+	width:100%;
+}
+
+table.grid tr.pager td{
+	text-align:left;
+}
+
+table.grid tr.pager td table tr {
+	background: transparent none !important;
+}
+
+table.grid tr.pager td table tr td {
+	margin:0 5px;
+	background: transparent none !important;
+}
+
+table.grid tr.pager td table tr td a.active{
+	font-weight:bold;
+	font-size:1.2em;
+}
+
+table.grid tr.pager td table tr td a{
+	color:#333333;
+	text-decoration:none;
+}
+
+
+table.grid td{
+	padding:5px 20px 0 10px !important;
+	height:25px  !important;
+	vertical-align:middle  !important;
+	font:11px "Trebuchet MS", Arial, Helvetica, sans-serif !important;
+}
+
+table.grid td input {
+	height: auto !important;
+	width: auto !important;
+	margin: 3px;
+}
+
+table.grid tr.even{
+	background-color:#e9e9e9;
+}
+
+table.grid tr.odd{
+	background-color:#fff;
+}
+
+table.grid tr.hover {
+	background-color:#c0c0c0 !important;
+}
+
+table.grid th{
+	padding:10px !important;
+	font-weight:bold !important;
+	margin-top: 5px !important;
+	vertical-align:middle !important;
+	font:11px "Trebuchet MS", Arial, Helvetica, sans-serif !important;
+	
+}
+
+table.sortable {
+	width:100%;
+
+	
+}
+
+
+
+
+table.sortable th{
+	padding:10px 0px 0 0;
+		
+}
+
+table.sortable th img {
+	height:12px;
+	width:10px;
+	margin: 0 5px 0 15px;
+	
+}
+
+
+
+
+
+
+
+
+div.outer div.limit div.inside td.ico-ampliar {
+	background:url(/CAC/resources/IMAGES/ico-ampliar.gif) no-repeat;
+	height:16px;
+	width:25px;
+	text-indent:-99999px;
+}
+
+div.outer div.limit div.inside td.ico-ampliar a {
+	display:block;
+}
+
+div.outer div.limit div.inside td.ico-editar {
+	background:url(/CAC/resources/IMAGES/ico-editar.gif) no-repeat;
+	height:16px;
+	width:25px;
+	text-indent:-99999px;
+}
+
+div.outer div.limit div.inside td.ico-editar a {
+	display:block;
+
+}
+
+
+
+div.outer div.limit div.inside fieldset.buttons{
+	display:block;
+	width:100%;
+	border:0;
+	margin: 10px 0 0 0;
+	
+}
+
+div.outer div.limit div.inside fieldset.buttons ul {
+	float:right;
+}
+
+
+div.outer div.limit div.inside fieldset.buttons ul li{
+	float:left;
+	display:block;
+	height: 22px;
+	padding-left: 10px;
+	margin-left:10px;
+	background: transparent url(/CAC/resources/IMAGES/bg-button-left.png) left top no-repeat !important;
+	width: auto;
+}
+
+div.outer div.limit div.inside fieldset.buttons li a{
+	display:block;
+	position: relative;
+	height: 22px;
+	padding: 3px 10px 0 0 !important;
+	background: transparent url(/CAC/resources/IMAGES/bg-button-right.png) right top no-repeat !important;
+	font-weight: bold;
+	border: none;
+	text-transform: uppercase;
+	font-size: 10px;
+	color: #545454;
+	outline: none;
+	-moz-outline: none;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	text-decoration: none;
+}
+
+div.outer div.limit div.inside fieldset.buttons li input {
+	display:block;
+	position: relative;
+	height: 22px;
+	padding: 4px 10px 0 0 !important;
+	background: transparent url(/CAC/resources/IMAGES/bg-button-right.png) right 3px no-repeat !important;
+	font-weight: bold;
+	border: none;
+	top: -3px;
+	text-transform: uppercase;
+	font-size: 10px;
+	color: #545454;
+	outline: none;
+	-moz-outline: none;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	cursor: pointer;
+	
+}
+
+span.button {
+	display:block;
+	width: auto;
+	height: 22px;
+	padding-left: 10px;
+	background: transparent url(/CAC/resources/IMAGES/bg-button-left.png) left top no-repeat !important;
+}
+
+span.button a {
+	display:block;
+	position: relative;
+	height: 22px;
+	padding: 3px 10px 0 0 !important;
+	background: transparent url(/CAC/resources/IMAGES/bg-button-right.png) right top no-repeat !important;
+	font-weight: bold;
+	border: none;
+	text-transform: uppercase;
+	font-size: 10px;
+	color: #545454;
+	outline: none;
+	-moz-outline: none;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	text-decoration: none;
+
+}
+
+div.outer div.limit div.inside ul.action-links{
+	display:block;
+	margin: 5px 0 10px 0;
+	float:right;
+	margin-top:-45px;
+}
+
+div.outer div.limit div.inside ul.action-links li{
+	display:block;
+	float:left;
+	height: 22px;
+	padding-left: 10px;
+	margin-left:10px;
+	background: transparent url(/CAC/resources/IMAGES/bg-button-left.png) left top no-repeat !important;
+}
+
+div.outer div.limit div.inside ul.action-links a{
+	display:block;
+	position: relative;
+	height: 22px;
+	padding: 3px 10px 0 0 !important;
+	background: transparent url(/CAC/resources/IMAGES/bg-button-right.png) right top no-repeat !important;
+	font-weight: bold;
+	border: none;
+	text-transform: uppercase;
+	font-size: 10px;
+	color: #545454;
+	outline: none;
+	-moz-outline: none;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	text-decoration: none;
+}
+
+div.outer div.limit div.inside ul.action-links input {
+	display:block;
+	position: relative;
+	height: 22px;
+	padding: 0 10px 0 0 !important;
+	background: transparent url(/CAC/resources/IMAGES/bg-button-right.png) right 2px no-repeat !important;
+	font-weight: bold;
+	border: none;
+	top: -2px;
+	text-transform: uppercase;
+	font-size: 10px;
+	color: #545454;
+	outline: none;
+	-moz-outline: none;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	cursor: pointer;	
+}
+
+
+
+
+/* START  cockpit */
+div.outer div.limit div.inside div.content ul.cockpit {
+	width: 740px;
+}
+
+
+div.outer div.limit div.inside div.content ul.cockpit li {
+	width:320px;
+	float:left;
+	margin-right:95px;
+	margin-bottom:25px;
+}
+
+div.outer div.limit div.inside div.content ul.cockpit li.last {
+	float:left;
+	margin-right:0;
+}
+
+div.outer div.limit div.inside div.content ul.cockpit li p {
+	color:#1b1612;
+	padding: 5px;
+	width:310px;
+	background-color:#f2f2f2;
+	font-size:1.4em;
+}
+
+div.outer div.limit div.inside div.content ul.cockpit li span.ampliar {
+	float:right;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* START HOME INSIDE */
+body.home div.outer div.limit div.header {    
+    position: relative;
+    height: 55px;
+    width: 700px;
+    display: block;
+	
+	margin: 0 auto;
+	
+}
+
+body.home div.outer div.limit div.header p{    
+    width: 100%;
+    display: block;
+	text-align:left;
+	padding-top:15px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+body.home div.outer div.limit div.header p.bem-vindo {
+	background: #e9e9e9 url(/CAC/resources/IMAGES/seta-bem-vindo.gif) right top no-repeat;
+	padding:8px 22px 9px 19px;
+	height: 33px;
+	width: auto;
+	margin-right:15px;
+	margin-top:35px;
+	color:#8a8a8a;
+	position:absolute; 
+	top: -30px;
+	left: 400px;
+}
+
+body.home div.outer div.limit div.inside h1 {
+	display: block;
+	height: 121px;
+	width: 223px;
+	margin: 0 auto;
+	text-indent: -999999px;
+}
+
+body.home div.outer div.limit div.inside {
+	background: #fff url(/CAC/resources/IMAGES/bg-home.gif) center top no-repeat;
+	width: 100%;
+	margin: 0;
+	padding:0;
+}
+
+ 
+body.home div.outer div.limit div.inside div.content form {
+	width: 372px;
+	padding:0;
+	margin: 80px auto 0 auto;
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset {
+	border:0;
+	padding:0;
+	margin:0;
+
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset legend {
+	margin-left:0;
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset legend span{
+	background: url(/CAC/resources/IMAGES/bg-login-top.png) no-repeat;
+	height:47px;
+	width:372px;
+	display:block;
+	margin:0;
+	color: #FFFFFF;
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset legend span b{
+	margin: 0 6px 6px 6px;
+	color: #FFFFFF;
+	height:41px;
+	width:360px;
+	display:block;
+	text-align:center;
+	padding-top:10px;
+
+}
+
+
+
+body.home div.outer div.limit div.inside div.content  {
+	margin:0;
+	text-align: center;
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset ul.login {
+	background:url(/CAC/resources/IMAGES/bg-login.png) no-repeat;
+	height:131px;
+	width:372px;
+	display:block;
+	padding: 31px 0 0 62px;
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset ul.login li {
+	margin-bottom:20px;
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset ul.login li label {
+	width:48px;
+	display:block;
+	float:left;
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset ul.login li input {
+	height:17px;
+	border:1px solid #dedede;
+	width:164px;
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset.buttons {
+	width:100%;
+	text-align:right;
+	margin-left:-5px;
+}
+
+body.home div.outer div.limit div.inside div.content ul.welcome {
+	display:inline-block;
+	width: auto;
+	margin:70px auto 0 auto;
+}
+
+body.home div.outer div.limit div.inside div.content ul.welcome li {
+	display:block;
+	background:url(/CAC/resources/IMAGES/bg-box-home-top.png) no-repeat;
+	float:left;
+	width:197px;
+	margin-right:15px;
+	text-align:left;
+}
+
+
+body.home div.outer div.limit div.inside div.content ul.welcome li strong{
+	height: 37px;
+	width:187px;
+	display:block;
+	color:#FFFFFF;
+	text-align:center;
+	padding-top:7px;
+	margin:6px 5px 7px 5px;
+
+}
+
+body.home div.outer div.limit div.inside div.content ul.welcome li p{
+	position: relative;
+	background:url(/CAC/resources/IMAGES/bg-box-home.png) no-repeat;
+	height: 164px;
+	width:197px;
+	margin:0;
+	padding: 8px 15px 30px 15px;
+}
+
+
+body.home div.outer div.limit div.inside div.content ul.welcome li span.entrar{
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+
+body.home div.outer div.limit div.inside div.content ul.welcome li.last {
+	margin-right:0;
+}
+
+
+/* Altera��es HUESCLI */
+div.outer div.limit div.inside div.content form fieldset.buttons {
+	width:100%;
+	text-align:right;
+	margin-left:-5px;
+}
+
+div.outer div.limit div.inside div.content ul.welcome {
+	display:inline-block;
+	width: auto;
+	margin:20px auto 0 auto;
+}
+
+div.outer div.limit div.inside div.content ul.welcome li {
+	display:block;
+	background:url(/CAC/resources/IMAGES/bg-box-home-top.png) no-repeat;
+	float:left;
+	width:197px;
+	margin-right:15px;
+	text-align:left;
+}
+
+
+div.outer div.limit div.inside div.content ul.welcome li strong{
+	height: 37px;
+	width:187px;
+	display:block;
+	color:#FFFFFF;
+	text-align:center;
+	padding-top:7px;
+	margin:6px 5px 7px 5px;
+
+}
+
+div.outer div.limit div.inside div.content ul.welcome li p{
+	position: relative;
+	background:url(/CAC/resources/IMAGES/bg-box-home.png) no-repeat;
+	height: 164px;
+	width:197px;
+	margin:0;
+	padding: 8px 15px 30px 15px;
+}
+
+
+div.outer div.limit div.inside div.content ul.welcome li span.entrar{
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	top: 130px;
+}
+
+div.outer div.limit div.inside div.content ul.welcome li.last {
+	margin-right:0;
+}
+
+/* START FOOTER */
+div.outer div.footer {
+    width: 100%;    
+    text-align: center;
+	clear:both;    
+	display:block;
+	position:relative;	
+	background:url(/CAC/resources/IMAGES/bg-footer.gif) repeat-x;
+	height:54px;
+	
+}
+
+div.outer div.footer p.direitos {
+	padding:14px 0 0 0;
+	color: #4c591c;
+	size: 11px;	
+	background: url(/CAC/resources/IMAGES/bg-footer-inside.gif);
+	height:54px;
+	width:1003px;
+	display:block;
+	margin: 0 auto;
+	
+}
+
+div.outer div.footer div.logo {
+	padding:0 0 0 0;
+	color: #545454;
+	size: 11px;	
+	background: #f2f2f2;
+	height:30px;
+	width:100% !important;
+	display:none /*block*/;
+}
+
+div.outer div.footer div.logo p{
+	width:200px;
+	float:right;
+}
+
+div.outer div.footer div.logo span.developercity{
+	/*background:url(/CAC/resources/IMAGES/logo-developercity-rodape.gif) no-repeat;
+	height:24px;
+	width:55px;
+	margin-right:20px;
+	text-indent:-9999999px;
+	position:absolute;*/
+}
+
+
+div.outer div.footer a {
+        color: #4c591c;
+        text-decoration: none;
+}
+div.outer div.footer a:hover {
+        color: #2c3900;
+        text-decoration: underline;
+}
+/* FOMULARIO */
+
+
+
+/* START POP */
+
+div.pop-container {
+	background-color:#fff;
+	border:3px solid #454545;
+}
+
+div.pop-container h6.pop-title {
+	display:block;
+	width:100%;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	overflow:hidden;
+}
+
+div.pop-container h6.pop-title span {
+	display:block;
+	color: #fff;
+	background-color:#4a4a4a;
+	width:100%;
+	height:28px;
+	font-size:1em;
+	margin-right:3px;
+	text-align: left !important;
+	float:left;
+	padding: 4px 0 8px 5px !important;
+}
+
+div.pop-container h6.pop-title span.button {
+	display:block;
+	position:relative;
+	float:right;
+	width:auto;
+	top: -25px;
+	*top: -32px;
+	padding-top: 0 !important;
+	padding-left: 8px !important;
+}
+
+div.pop-container div.loading {
+	display:block;
+	text-align:left;
+	background:url(/CAC/resources/IMAGES/carregando.png) left top no-repeat;
+	height: 35px;
+	padding-left: 60px;
+	font: 1.5em "Trebuchet MS", Arial, Helvetica, sans-serif;
+	padding-top: 10px;
+	margin: 35px 0 0 0;
+	color: #545454;
+}
+
+div.pop-container iframe.inside {
+	clear:both;
+	display:block;
+	width:100%;
+	border: none;
+}
+
+div.pop-container iframe {
+	
+}
+
+div.pop-container div.inside {
+	clear:both !important;
+	padding: 5px !important;
+}
+
+div.pop-container div.inside fieldset.buttons{
+	display:block;
+	width:100%;
+	border:0;
+	margin: 10px 0 0 0;
+	
+}
+
+div.pop-container div.inside fieldset.buttons ul {
+	float:right;
+}
+
+
+div.pop-container div.inside fieldset.buttons li{
+	float:left;
+	display:block;
+	height: 22px;
+	padding-left: 10px;
+	margin-left:10px;
+	background: transparent url(/CAC/resources/IMAGES/bg-button-left.png) left top no-repeat !important;
+}
+
+div.pop-container div.inside fieldset.buttons li a{
+	display:block;
+	position: relative;
+	height: 22px;
+	padding: 3px 10px 0 0 !important;
+	background: transparent url(/CAC/resources/IMAGES/bg-button-right.png) right top no-repeat !important;
+	font-weight: bold;
+	border: none;
+	text-transform: uppercase;
+	font-size: 10px;
+	color: #545454;
+	outline: none;
+	-moz-outline: none;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	text-decoration: none;
+}
+
+div.pop-container div.inside fieldset.buttons li input {
+	display:block;
+	position: relative;
+	height: 22px;
+	padding: 4px 10px 0 0 !important;
+	background: transparent url(/CAC/resources/IMAGES/bg-button-right.png) right 3px no-repeat !important;
+	font-weight: bold;
+	border: none;
+	top: -3px;
+	text-transform: uppercase;
+	font-size: 10px;
+	color: #545454;
+	outline: none;
+	-moz-outline: none;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	cursor: pointer;
+}
+
+
+div.pop-container div.inside input{
+	height:17px;
+	background-color:#f5f5f5;
+	border:1px solid #dedede;
+	font-size: 1em;
+	color:#1b1612;	
+
+}
+
+div.pop-container div.inside textarea{
+	height:80px;
+	width:auto;
+	background-color:#f5f5f5;
+	border:1px solid #dedede;
+		font-size: 1em;
+	color:#1b1612;	
+
+}
+
+
+
+div.pop-container div.inside select {
+	background-color:#f5f5f5;
+	border:1px solid #dedede;
+	font-size: 1em;
+	color:#1b1612;	
+}
+
+span.error {
+    color: red;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+li.StatusBreak, li.StatusSystemBreak, li.StatusOnline, li.StatusOffline {
+    vertical-align: middle;
+    text-align: right;
+    height: 35px;
+}
+li.StatusBreak span {
+    background: url(/CAC/resources/IMAGES/Break.png);
+    display: block;
+    width: 100px;
+    height: 25px;
+    line-height: 23px;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 100%;
+    margin-left: -118px;
+    border: gray dotted 1px;
+}
+li.StatusSystemBreak span {
+    background: url(/CAC/resources/IMAGES/SystemBreak.png);
+    display: block;
+    width: 100px;
+    height: 25px;
+    line-height: 23px;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 100%;
+    margin-left: -118px;
+    border: gray dotted 1px;
+}
+li.StatusOnline span {
+    background: url(/CAC/resources/IMAGES/Online.png);
+    display: block;
+    width: 100px;
+    height: 25px;
+    line-height: 23px;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 100%;
+    margin-left: -118px;
+    border: gray dotted 1px;
+}
+li.StatusOffline span {
+    background: url(/CAC/resources/IMAGES/Offline.png);
+    display: block;
+    width: 100px;
+    color: white;
+    height: 25px;
+    line-height: 23px;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 100%;
+    margin-left: -118px;
+    border: gray dotted 1px;
+}
+
+ul#ReportList { border: 1px solid #cce; width: 230px; display: block; float: left; height: 130px; overflow: auto; padding: 0px 5px 20px 5px; }
+ul#ReportList li { display: block; text-align: left; }
+ul#ReportList li a { font-weight: bold; text-decoration: none; color: #777; text-align: center; vertical-align: middle; }
+ul#ReportList li a:hover { font-weight: bold; text-decoration: underline; color: #55c; }
+
+.formList { border: 1px solid #cce!important; }
+.formList legend { margin-left: 10px; }
+.formList ul li { padding: 5px; }
+.formList ul li label { display: block; float: left; width: 120px; }
+
+div#ExportMenu { background-color: transparent; display: block; width: 100%; height: auto; padding: 5px; }
+div#ExportMenu ul { background-color: transparent; }
+div#ExportMenu ul li { background-color: transparent; text-align: center; vertical-align: middle; margin: 2px; display: block; float: left; width: 85px; height: 80px; }
+div#ExportMenu ul li input { background-color: transparent; border: 0; display: block; margin: auto; width: 100%; }
+div#ExportMenu ul li label { background-color: transparent; border: 0; display: block; font-weight: normal; width: 100%; font-size: -1em; margin: auto; cursor: pointer; }
+
+div#filterFormContainer {
+    display: block!important;
+    margin-left: 10px;
+    margin-top: -8px;
+    float: left!important;
+    width: 390px!important;
+}
+
+td.center { text-align: center!important; }
+td.right { text-align: right!important; }
+table#queueTable { border: 3px double black; width: 100%; }
+table#queueTable thead tr th { background: black; color: white; }
+table#queueTable tfoot tr td { background: black; color: white; }
+table#queueTable tbody tr td { text-align: right; padding: 0 1px; }
+table#queueTable tbody tr td a { color: black; text-decoration: none; font-weight: bold; }
+table#queueTable tbody tr td a:hover { color: #558; text-decoration: underline; font-weight: bold; }
+table#queueTable tbody tr.queue td { background: #eea; color: black; }
+table#queueTable tbody tr.talking td { background: #ada; color: black; }
+table#queueTable tbody tr.dialing td { background: #ccf; color: black; }
+table#queueTable tbody tr.frozen td { background: #cc9; color: gray; }
+
+div#queueItemDetails { font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; overflow: auto; height: 344px; }
+div#queueItemDetails a#closeQueueItemDetails { display: block; position: absolute; right: 16px; padding: 0px 4px; top: 0; text-decoration: none; font-weight: bold; color: #bbe; background: black; }
+div#queueItemDetails a#closeQueueItemDetails:hover { text-decoration: underline; color: #fff; background: #445; }
+div#queueItemDetails h3 { font-size:15px; font-weight: bold; margin: 20px auto 5px; background: #66a; color: white; text-align: left; padding-left: 35px; }
+div#queueItemDetails ul#queueItemBasic { padding: 0; margin: 0; list-style: none; }
+div#queueItemDetails ul#queueItemBasic li { padding: 0 0 0 10px; margin: 4px 0; list-style: none; display: block; text-align: left; }
+div#queueItemDetails ul#queueItemBasic li label { display: inline-block; width: 140px; }
+div#queueItemDetails ul#queueItemBasic li input { display: inline-block; width: 320px; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: solid 1px #88c; }
+div#queueItemDetails table#queueItemHistory { width: 97%; margin: 0 auto 0 auto; border: solid 1px #88c; }
+div#queueItemDetails table#queueItemHistory thead tr th { background: #88c; color: white; font-weight: bold; width: 50%; }
+div#queueItemDetails table#queueItemHistory tbody tr.validHistory { background: #ee9; border: #aa4; }
+div#queueItemDetails table#queueItemHistory tbody tr.invalidHistory { color: red; font-style: italic; }
+div#queueItemDetails table#queueItemCallBacks { width: 97%; margin: 0 auto 50px auto; border: solid 1px #88c; }
+div#queueItemDetails table#queueItemCallBacks thead tr th { background: #88c; color: white; font-weight: bold; }
+div#queueItemDetails table#queueItemCallBacks tbody tr.validCallBack { background: #ee9; border: #aa4; }
+div#queueItemDetails table#queueItemCallBacks tbody tr.invalidCallBack { color: red; font-style: italic; }
+
+table#agentTable { border: 3px double black; width: 100%; }
+table#agentTable thead tr th { background: black; color: white; width: 25%; }
+table#agentTable tfoot tr td { background: black; color: white; }
+table#agentTable tbody tr td a { color: black; text-decoration: none; font-weight: bold; }
+table#agentTable tbody tr td a:hover { color: #558; text-decoration: underline; font-weight: bold; }
+table#agentTable tbody tr.waiting td { background: #ccf; color: black; }
+table#agentTable tbody tr.break td { background: #b87; color: black; }
+table#agentTable tbody tr.talking td { background: #ada; color: black; }
+table#agentTable tbody tr.offline td, table#agentTable tbody tr.offline td a { background: #555; color: white; }
+
+div#agentItemDetails { font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; overflow: auto; height: 344px; }
+div#agentItemDetails a#closeAgentItemDetails { display: block; position: absolute; right: 16px; padding: 0px 4px; top: 0; text-decoration: none; font-weight: bold; color: #bbe; background: black; }
+div#agentItemDetails a#closeAgentItemDetails:hover { text-decoration: underline; color: #fff; background: #445; }
+div#agentItemDetails a#saveAgentItemDetails { display: block; position: absolute; right: 100px; padding: 0px 20px; top: 0; text-decoration: none; font-weight: bold; color: #eee; background: #1a1; }
+div#agentItemDetails a#saveAgentItemDetails:hover { text-decoration: underline; color: #fff; background: #3e3; }
+div#agentItemDetails h3 { font-size:15px; font-weight: bold; margin: 20px auto 5px; background: #66a; color: white; text-align: left; padding-left: 35px; }
+div#agentItemDetails ul#agentItemBasic { padding: 0; margin: 0; list-style: none; }
+div#agentItemDetails ul#agentItemBasic li { padding: 0 0 0 10px; margin: 4px 0; list-style: none; display: block; text-align: left; }
+div#agentItemDetails ul#agentItemBasic li label { display: inline-block; width: 140px; }
+div#agentItemDetails ul#agentItemBasic li input { display: inline-block; width: 320px; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: solid 1px #88c; }
+div#agentItemDetails table#agentItemHistory { width: 97%; margin: 0 auto 0 auto; border: solid 1px #88c; }
+div#agentItemDetails table#agentItemHistory thead tr th { background: #88c; color: white; font-weight: bold; width: 50%; }
+div#agentItemDetails table#agentItemHistory tbody tr.validHistory { background: #ee9; border: #aa4; }
+div#agentItemDetails table#agentItemHistory tbody tr.invalidHistory { color: red; font-style: italic; }
+div#agentItemDetails table#agentItemCallBacks { width: 97%; margin: 0 auto 50px auto; border: solid 1px #88c; }
+div#agentItemDetails table#agentItemCallBacks thead tr th { background: #88c; color: white; font-weight: bold; }
+div#agentItemDetails table#agentItemCallBacks tbody tr.validCallBack { background: #ee9; border: #aa4; }
+div#agentItemDetails table#agentItemCallBacks tbody tr.invalidCallBack { color: red; font-style: italic; }
+div#agentItemDetails table#agentItemHistory { width: 97%; margin: 0 auto 100px auto; border: solid 1px #88c; }
+div#agentItemDetails table#agentItemHistory thead tr th { background: #88c; color: white; font-weight: bold; width: 50%; }
+div#agentItemDetails table#agentItemHistory tbody tr { background: #ee9; border: #aa4; }
+div#agentItemDetails > div#tabButtons { text-align: left; margin-left: 15px; }
+div#agentItemDetails > div#tabButtons > ul > li { display: inline-block; margin: 1px auto -1px auto; background: url(/CAC/resources/IMAGES/BackTabs.png) white no-repeat; border-bottom: 2px groove #ccc; width: 80px; height: 20px; line-height: 20px; text-align: center; vertical-align: middle; }
+div#agentItemDetails > div#tabButtons > ul > li.selected { border-bottom: none; margin: 2px auto -2px auto; }
+div#agentItemDetails > div#tabButtons > ul > li > a { color: black; text-decoration: none; font-weight: normal; font-size: 8pt; }
+div#agentItemDetails > div#tabButtons > ul > li.selected a { font-weight: bold; color: #116; }
+div#agentItemDetails > div#tabButtons > ul > li > a:hover { color: blue; }
+div#agentItemDetails > fieldset#formUser { margin-top: 35px; height: 250px; }
+div#agentItemDetails > fieldset#formUser { margin-top: -1px; }
+div#agentItemDetails > fieldset#formUser > div#userModulePermissionContainer { height: 100%; width: 100%; overflow: auto; text-align: left; }
+div#agentItemDetails > fieldset#formUser > div#userModulePermissionContainer > ul { font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; text-align: left; margin: 10px 15px; }
+div#agentItemDetails > fieldset#formUser > div#userModulePermissionContainer > ul input { display: inline-block; height: 18px; vertical-align: middle; width: auto; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: none; margin: 0; text-align: left; }
+div#agentItemDetails > fieldset#formUser > div#userModulePermissionContainer > ul label { display: inline-block; line-height: 18px; vertical-align: middle; height: 18px; vertical-align: middle; width: auto; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: none; margin: 0 5px; text-align: left; }
+div#agentItemDetails > fieldset#formUser > div#userReportPermissionContainer { height: 100%; width: 100%; overflow: auto; text-align: left; }
+div#agentItemDetails > fieldset#formUser > div#userReportPermissionContainer > ul { font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; text-align: left; margin: 10px 15px; }
+div#agentItemDetails > fieldset#formUser > div#userReportPermissionContainer > ul input { display: inline-block; height: 18px; vertical-align: middle; width: auto; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: none; margin: 0; text-align: left; }
+div#agentItemDetails > fieldset#formUser > div#userReportPermissionContainer > ul label { display: inline-block; line-height: 18px; vertical-align: middle; height: 18px; vertical-align: middle; width: auto; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: none; margin: 0 5px; text-align: left; }
+div#agentItemDetails > fieldset#formUser > div#userChartPermissionContainer { height: 100%; width: 100%; overflow: auto; text-align: left; }
+div#agentItemDetails > fieldset#formUser > div#userChartPermissionContainer > ul { font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; text-align: left; margin: 10px 15px; }
+div#agentItemDetails > fieldset#formUser > div#userChartPermissionContainer > ul input { display: inline-block; height: 18px; vertical-align: middle; width: auto; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: none; margin: 0; text-align: left; }
+div#agentItemDetails > fieldset#formUser > div#userChartPermissionContainer > ul label { display: inline-block; line-height: 18px; vertical-align: middle; height: 18px; vertical-align: middle; width: auto; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: none; margin: 0 5px; text-align: left; }
+
+table#logTable { border: 3px double black; width: 100%; }
+table#logTable thead tr th { background: black; color: white; width: 25%; }
+table#logTable tfoot tr td { background: black; color: white; }
+table#logTable tbody tr td a { color: black; text-decoration: none; font-weight: bold; }
+table#logTable tbody tr td a:hover { color: #558; text-decoration: underline; font-weight: bold; }
+
+table#priorityTable { border: 3px double black; width: 100%; }
+table#priorityTable thead tr th { background: black; color: white; }
+table#priorityTable tfoot tr td { background: black; color: white; }
+table#priorityTable tbody tr { cursor: pointer; }
+table#priorityTable tbody tr td { text-align: center; }
+table#priorityTable tbody tr td a { color: black; text-decoration: none; font-weight: bold; }
+table#priorityTable tbody tr td a:hover { color: #558; text-decoration: underline; font-weight: bold; }
+
+div#priorityItemDetails { font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; overflow: auto; height: 344px; }
+div#priorityItemDetails a#closePriorityItemDetails { display: block; position: absolute; right: 16px; padding: 0px 4px; top: 0; text-decoration: none; font-weight: bold; color: #bbe; background: black; }
+div#priorityItemDetails a#closePriorityItemDetails:hover { text-decoration: underline; color: #fff; background: #445; }
+div#priorityItemDetails a#savePriorityItemDetails { display: block; position: absolute; right: 100px; padding: 0px 20px; top: 0; text-decoration: none; font-weight: bold; color: #eee; background: #1a1; }
+div#priorityItemDetails a#savePriorityItemDetails:hover { text-decoration: underline; color: #fff; background: #3e3; }
+div#priorityItemDetails a#deletePriorityItemDetails { display: block; position: absolute; left: 16px; padding: 0px 20px; top: 0; text-decoration: none; font-weight: bold; color: #eee; background: #a11; }
+div#priorityItemDetails a#deletePriorityItemDetails:hover { text-decoration: underline; color: #fff; background: #e33; }
+div#priorityItemDetails h3 { font-size:15px; font-weight: bold; margin: 20px auto 5px; background: #66a; color: white; text-align: left; padding-left: 35px; }
+div#priorityItemDetails ul#priorityItemBasic { padding: 0; margin: 0; list-style: none; }
+div#priorityItemDetails ul#priorityItemBasic li { padding: 0 0 0 10px; margin: 4px 0; list-style: none; display: block; text-align: left; }
+div#priorityItemDetails ul#priorityItemBasic li label { display: inline-block; width: 140px; vertical-align: top; }
+div#priorityItemDetails ul#priorityItemBasic li input { display: inline-block; width: 320px; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: solid 1px #88c; }
+div#priorityItemDetails ul#priorityItemBasic li ul.CheckBoxList { display: inline-block; width: 320px; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: solid 1px #88c; margin-left: -3px; }
+div#priorityItemDetails ul#priorityItemBasic li ul.CheckBoxList input { display: inline-block; height: 18px; vertical-align: middle; width: auto; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: none; margin: 0; }
+div#priorityItemDetails ul#priorityItemBasic li ul.CheckBoxList span { display: inline-block; line-height: 18px; vertical-align: middle; width: auto; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: none; margin: 0 5px; }
+
+div#filterChart {
+    display: block!important;
+    margin-left: 10px;
+    margin-top: -8px;
+    float: left!important;
+    width: 390px!important;
+    height: 150px!important;
+}
+
+#chartFilterForm { height: 138px!important; }
+
+#theChart { z-index: -1; display:none; clear:both; }
+
+#ui-datepicker-div {
+    z-index: 10000!important;
+}
+
+#formSetup > fieldset.formList > ul > li { padding: 0 0 0 10px; margin: 4px 0; list-style: none; display: block; text-align: left; }
+#formSetup > fieldset.formList > ul > li > label { display: inline-block; width: 30%; vertical-align: top; }
+#formSetup > fieldset.formList > ul > li > input { display: inline-block; width: 68%; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: solid 1px #88c; }
+#formSetup > fieldset.formList > ul > li > select { display: inline-block; width: 68%; background-color:#f5f5f5; border:1px solid #dedede; font-size: 1em; color:#1b1612; }
+#formSetup > fieldset#queueFields > ul > li > input { width: 25px!important; text-align: center!important; margin: auto 4px; }
+
+#diagnostics > fieldset.formList > ul > li { padding: 0 0 0 10px; margin: 4px 0; list-style: none; display: block; text-align: left; }
+#diagnostics > fieldset.formList > ul > li > label { display: inline-block; width: 24%; vertical-align: top; }
+#diagnostics > fieldset.formList > ul > li > input { display: inline-block; width: 70%; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: solid 1px #88c; }
+#diagnostics > fieldset.formList > ul > li > select { display: inline-block; width: 70%; background-color:#f5f5f5; border:1px solid #dedede; font-size: 1em; color:#1b1612; }
+
+
+table#holidaysTable { border: 3px double black; width: 100%; }
+table#holidaysTable thead tr th { background: black; color: white; }
+table#holidaysTable tfoot tr td { background: black; color: white; }
+table#holidaysTable tbody tr { cursor: pointer; }
+table#holidaysTable tbody tr td { text-align: left; padding: 0 10px; }
+table#holidaysTable tbody tr td a { color: black; text-decoration: none; font-weight: bold; }
+table#holidaysTable tbody tr td a:hover { color: #558; text-decoration: underline; font-weight: bold; }
+
+div#holidayItemDetails { font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; overflow: auto; height: 344px; }
+div#holidayItemDetails a#closeHolidayItemDetails { display: block; position: absolute; right: 16px; padding: 0px 4px; top: 0; text-decoration: none; font-weight: bold; color: #bbe; background: black; }
+div#holidayItemDetails a#closeHolidayItemDetails:hover { text-decoration: underline; color: #fff; background: #445; }
+div#holidayItemDetails a#saveHolidayItemDetails { display: block; position: absolute; right: 100px; padding: 0px 20px; top: 0; text-decoration: none; font-weight: bold; color: #eee; background: #1a1; }
+div#holidayItemDetails a#saveHolidayItemDetails:hover { text-decoration: underline; color: #fff; background: #3e3; }
+div#holidayItemDetails a#deleteHolidayItemDetails { display: block; position: absolute; left: 16px; padding: 0px 20px; top: 0; text-decoration: none; font-weight: bold; color: #eee; background: #a11; }
+div#holidayItemDetails a#deleteHolidayItemDetails:hover { text-decoration: underline; color: #fff; background: #e33; }
+div#holidayItemDetails h3 { font-size:15px; font-weight: bold; margin: 20px auto 5px; background: #66a; color: white; text-align: left; padding-left: 35px; }
+div#holidayItemDetails ul#holidayItemBasic { padding: 0; margin: 0; list-style: none; }
+div#holidayItemDetails ul#holidayItemBasic li { padding: 0 0 0 10px; margin: 4px 0; list-style: none; display: block; text-align: left; }
+div#holidayItemDetails ul#holidayItemBasic li label { display: inline-block; width: 140px; vertical-align: top; }
+div#holidayItemDetails ul#holidayItemBasic li input { display: inline-block; width: 320px; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: solid 1px #88c; }
+div#holidayItemDetails ul#holidayItemBasic li ul.CheckBoxList { display: inline-block; width: 320px; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: solid 1px #88c; margin-left: -3px; }
+div#holidayItemDetails ul#holidayItemBasic li ul.CheckBoxList input { display: inline-block; height: 18px; vertical-align: middle; width: auto; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: none; margin: 0; }
+div#holidayItemDetails ul#holidayItemBasic li ul.CheckBoxList span { display: inline-block; line-height: 18px; vertical-align: middle; width: auto; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: none; margin: 0 5px; }
+
+table#blackListTable { border: 3px double black; width: 100%; }
+table#blackListTable thead tr th { background: black; color: white; }
+table#blackListTable tfoot tr td { background: black; color: white; }
+table#blackListTable tbody tr { cursor: pointer; }
+table#blackListTable tbody tr td { text-align: center; }
+table#blackListTable tbody tr td a { color: black; text-decoration: none; font-weight: bold; }
+table#blackListTable tbody tr td a:hover { color: #558; text-decoration: underline; font-weight: bold; }
+
+div#blackListItemDetails { font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; overflow: auto; height: 344px; }
+div#blackListItemDetails a#closeBlackListItemDetails { display: block; position: absolute; right: 16px; padding: 0px 4px; top: 0; text-decoration: none; font-weight: bold; color: #bbe; background: black; }
+div#blackListItemDetails a#closeBlackListItemDetails:hover { text-decoration: underline; color: #fff; background: #445; }
+div#blackListItemDetails a#saveBlackListItemDetails { display: block; position: absolute; right: 100px; padding: 0px 20px; top: 0; text-decoration: none; font-weight: bold; color: #eee; background: #1a1; }
+div#blackListItemDetails a#saveBlackListItemDetails:hover { text-decoration: underline; color: #fff; background: #3e3; }
+div#blackListItemDetails a#deleteBlackListItemDetails { display: block; position: absolute; left: 16px; padding: 0px 20px; top: 0; text-decoration: none; font-weight: bold; color: #eee; background: #a11; }
+div#blackListItemDetails a#deleteBlackListItemDetails:hover { text-decoration: underline; color: #fff; background: #e33; }
+div#blackListItemDetails h3 { font-size:15px; font-weight: bold; margin: 20px auto 5px; background: #66a; color: white; text-align: left; padding-left: 35px; }
+div#blackListItemDetails ul#blackListItemBasic { padding: 0; margin: 0; list-style: none; }
+div#blackListItemDetails ul#blackListItemBasic li { padding: 0 0 0 10px; margin: 4px 0; list-style: none; display: block; text-align: left; }
+div#blackListItemDetails ul#blackListItemBasic li label { display: inline-block; width: 140px; vertical-align: top; }
+div#blackListItemDetails ul#blackListItemBasic li input { display: inline-block; width: 320px; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: solid 1px #88c; }
+div#blackListItemDetails ul#blackListItemBasic li ul.CheckBoxList { display: inline-block; width: 320px; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: solid 1px #88c; margin-left: -3px; }
+div#blackListItemDetails ul#blackListItemBasic li ul.CheckBoxList input { display: inline-block; height: 18px; vertical-align: middle; width: auto; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: none; margin: 0; }
+div#blackListItemDetails ul#blackListItemBasic li ul.CheckBoxList span { display: inline-block; line-height: 18px; vertical-align: middle; width: auto; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: none; margin: 0 5px; }
+
+#formWebQueue > fieldset.formList > ul > li { padding: 0 0 0 10px; margin: 4px 0; list-style: none; display: block; text-align: left; }
+#formWebQueue > fieldset.formList > ul > li > label { display: inline-block; width: 30%; vertical-align: top; }
+#formWebQueue > fieldset.formList > ul > li > input { display: inline-block; width: 68%; font:11px "Trebuchet MS", Arial, Helvetica, sans-serif; border: solid 1px #88c; }
+#formWebQueue > fieldset.formList > ul > li > select { display: inline-block; width: 68%; background-color:#f5f5f5; border:1px solid #dedede; font-size: 1em; color:#1b1612; }
+ul#scheduleDetails { border: double black 3px; padding: 10px; }
+ul#scheduleDetails li { font-size: 11px; }
+ul#scheduleDetails li span { font-weight: bold; margin-left: 5px; font-size: 13px; }
+
+table#callList { border: 3px double black; width: 100%; }
+table#callList thead tr th { background: black; color: white; }
+table#callList tfoot tr td { background: black; color: white; }
+table#callList tbody tr { }
+table#callList tbody tr.unfinished { background-color: #ee9; color: red; }
+table#callList tbody tr td { text-align: center; }
+table#callList tbody tr td a { color: black; text-decoration: none; font-weight: bold; }
+table#callList tbody tr td a:hover { color: #558; text-decoration: underline; font-weight: bold; }

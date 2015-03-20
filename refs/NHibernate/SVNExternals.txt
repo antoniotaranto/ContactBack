@@ -1,0 +1,1 @@
+NHibernate https://srvdsv01:8443/svn/Lib/release/NHibernate/2.1/

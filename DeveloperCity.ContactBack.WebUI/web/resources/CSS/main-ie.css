@@ -1,0 +1,81 @@
+div.outer div.limit div.header p.bem-vindo {
+	height: 16px;
+}
+
+div.outer div.limit div.inside div.breadcrumb h3 {
+	width: 225px;
+	height: 34px;
+}
+
+div.outer div.limit div.three-column div.content {
+	margin: 0 273px 0 243px;
+}
+
+div.outer div.limit div.inside a.expand {
+	height: 22px;	
+}
+
+div.outer div.limit div.inside table.grid td{
+	height:20px;
+}
+
+div.outer div.limit div.inside table.sortable th{
+	height:24px;	
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset legend {
+	margin-left:-7px;
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset legend span{
+	height:47px;
+	width:372px;
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset legend b{
+	height: 31px !important;  
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset ul.login {
+	height:100px;
+	width:310px;
+}
+
+body.home div.outer div.limit div.inside div.content ul.home li strong{
+	height: 37px;
+	width:187px;
+}
+
+body.home div.outer div.limit div.inside div.content ul.home li strong span{
+	height: 30px;	
+}
+
+body.home div.outer div.limit div.inside div.content ul.home li p{
+	width:167px;
+}
+
+body.home div.outer div.limit div.header p.bem-vindo {
+	height: 16px;
+}
+
+
+div.outer div.limit div.inside div.content form fieldset legend {
+	margin-left:-7px;
+}
+
+div.outer div.limit div.inside div.content ul.welcome li p{
+	width:167px;
+}
+
+div.outer div.footer p.direitos {
+	height:40px;
+}
+
+div.pop-geral div.inside h1 {
+	height:19px;
+}
+
+div.outer div.limit div.inside div.content ul.cockpit li span.ampliar {
+	margin-right: 5px;
+}
+

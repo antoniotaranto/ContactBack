@@ -1,0 +1,62 @@
+div.outer div.limit div.header div.logos h1 a{
+	background:url(/CAC/resources/IMAGES/Danone.png) no-repeat;
+}
+
+body.home div.outer div.limit div.inside h1 {
+	background: url(/CAC/resources/IMAGES/Danone.png) no-repeat;
+}
+
+
+
+body.home div.outer div.limit div.inside div.content form fieldset legend span b{
+	background-color: #6c2972;
+}
+
+
+body.home div.outer div.limit div.inside div.content ul.welcome li strong {
+	background-color: #6c2972;
+}
+
+body.home div.outer div.limit div.inside div.content form fieldset legend span b{
+	background-color: #6c2972;
+}
+
+div.outer div.limit div.inside div.content ul.welcome li strong {
+	background-color: #6c2972;
+}
+
+div.outer div.limit div.header div.outras-aplicacoes strong {
+	background-color:#6c2972;
+}
+
+
+div.outer div.limit div.header div.outras-aplicacoes ul {
+	background-color:#6c2972;
+}
+
+div.outer div.limit div.header div.outras-aplicacoes ul li.active a {
+	color:#6c2972;
+}
+
+div.outer div.limit div.header ul.menu li a{
+	color:#6c2972;
+}
+
+
+div.outer div.limit div.inside div.breadcrumb strong {
+	color: #6c2972;
+}
+
+
+div.outer div.limit div.inside div.breadcrumb h3 {
+	background: #6c2972 url(/CAC/resources/IMAGES/breadcrumb-heading-bg.png) left bottom no-repeat;
+}
+
+div.outer div.limit div.inside div.breadcrumb ul li a {
+	color: #6c2972;
+}
+
+div.outer div.limit div.header div.logos p strong {
+	background-color: #6c2972;
+}
+

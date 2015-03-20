@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="DeveloperCity.ContactBack.DomainModel.Call" table="`Call`">
+    <id column="`CallID`" name="CallID" type="long" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <timestamp access="field" column="`ModifiedOn`" name="ModifiedOn"/>
+    <many-to-one access="property" class="DeveloperCity.ContactBack.DomainModel.Queue" column="`QueueID`" lazy="false" fetch="join" name="Queue"/>
+    <many-to-one access="property" class="DeveloperCity.ContactBack.DomainModel.Agent" column="`UserID`" lazy="false" fetch="join" name="Agent"/>
+    <property column="`StartTime`" name="StartTime" not-null="true" type="java.util.Date"/>
+    <property column="`AnswerTime`" name="AnswerTime" not-null="false" type="java.util.Date"/>
+    <property column="`EndTime`" name="EndTime" not-null="false" type="java.util.Date"/>
+    <property column="`CurrentStatus`" name="CallStatus" type="DeveloperCity.ContactBack.DataAccess.UserTypes.CallStatus"/>
+    <property column="`CallManagerCallID`" name="CallManagerCallID" not-null="true" type="long"/>
+    <bag access="property" inverse="true" lazy="true" name="Records" table="`Record`">
+      <key column="`CallID`"/>
+      <one-to-many class="DeveloperCity.ContactBack.DomainModel.Record"/>
+    </bag>
+    <property access="field" column="`CreatedOn`" name="CreatedOn" not-null="true" type="java.util.Date"/>
+  </class>
+</hibernate-mapping>

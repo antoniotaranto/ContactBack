@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="DeveloperCity.ContactBack.DomainModel.User" table="`User`">
+    <id column="`UserID`" name="UserID" type="long" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <timestamp access="field" column="`ModifiedOn`" name="ModifiedOn"/>
+    <property column="`Username`" length="20" name="Username" not-null="true" type="java.lang.String"/>
+    <property column="`Name`" length="100" name="Name" not-null="true" type="java.lang.String"/>
+    <property column="`Email`" length="255" name="Email" not-null="false" type="java.lang.String"/>
+    <property column="`Birthday`" name="Birthday" type="java.util.Date"/>
+    <property column="`Password`" length="128" name="Password" not-null="true" type="java.lang.String"/>
+    <property column="`CurrentStatus`" name="UserStatus" type="DeveloperCity.ContactBack.DataAccess.UserTypes.UserStatus"/>
+    <bag access="property" inverse="true" lazy="true" name="Permissions" table="`UserPermission`">
+      <key column="`UserID`"/>
+      <one-to-many class="DeveloperCity.ContactBack.DomainModel.UserPermission"/>
+    </bag>
+    <bag access="property" inverse="true" lazy="true" name="Reports" table="`UserReport`">
+      <key column="`UserID`"/>
+      <one-to-many class="DeveloperCity.ContactBack.DomainModel.UserReport"/>
+    </bag>
+    <bag access="property" inverse="true" lazy="true" name="Charts" table="`UserChart`">
+      <key column="`UserID`"/>
+      <one-to-many class="DeveloperCity.ContactBack.DomainModel.UserChart"/>
+    </bag>
+    <property access="field" column="`CreatedOn`" name="CreatedOn" not-null="true" type="java.util.Date"/>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,1 @@
+Hibernate https://srvdsv01:8443/svn/Lib/release/Hibernate/3.4/

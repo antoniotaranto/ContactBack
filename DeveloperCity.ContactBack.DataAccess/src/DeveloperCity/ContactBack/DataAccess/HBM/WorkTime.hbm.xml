@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="DeveloperCity.ContactBack.DomainModel.WorkTime" table="`WorkTime`">
+    <id column="`WorkTimeID`" name="WorkTimeID" type="long" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <timestamp access="field" column="`ModifiedOn`" name="ModifiedOn"/>
+    <property column="`LoginTime`" name="LoginTime" not-null="true" type="java.util.Date"/>
+    <property column="`LogoutTime`" name="LogoutTime" not-null="false" type="java.util.Date"/>
+    <many-to-one access="property" class="DeveloperCity.ContactBack.DomainModel.Agent" column="`UserID`" lazy="proxy" name="Agent"/>
+    <bag access="property" inverse="true" lazy="true" name="Breaks" table="`Break`">
+      <key column="`WorkTimeID`"/>
+      <one-to-many class="DeveloperCity.ContactBack.DomainModel.Break"/>
+    </bag>
+    <property access="field" column="`CreatedOn`" name="CreatedOn" not-null="true" type="java.util.Date"/>
+  </class>
+</hibernate-mapping>
